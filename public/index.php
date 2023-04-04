@@ -12,3 +12,4 @@ if(true){
 }else{
     include_once '../controller/privateCont.php';
 }
+
