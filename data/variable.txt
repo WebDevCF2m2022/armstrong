@@ -53,10 +53,10 @@ $isSend = sendMessage();
 
 #navbar :
 
-$articleMenu = getCategoryMenu();
+$articleMenu = getCategoryMenu(); DONE
 
 # tous les articles par ordre chrono / page d'accueil :
-$allArticles = getAllArticle();
+$allArticles = getAllArticle(); DONE
 
 # les articles par category :
 $articlesByCategory = getArticleByCategory();

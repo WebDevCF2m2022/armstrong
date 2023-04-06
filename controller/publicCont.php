@@ -24,4 +24,5 @@ elseif(false){
 
 else{
     include_once '../view/homepageView.php';
+
 }
