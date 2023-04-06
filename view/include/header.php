@@ -29,6 +29,7 @@ $articleMenu = getCategoryMenu($db);
         ?>
         <a href="?p=contact">Contact</a>
         <a href="?p=connect">Connexion</a>
+       
 
     </nav>
 
