@@ -1,0 +1,81 @@
+
+## nota bene:
+# tout nom de variable et fonction sont en camel case, en anglais et toujours au singulier pour éviter les problèmes.
+
+# J'ai repris les noms de champs de DB pour faciliter la tache et éviter les confusions.
+
+# nombre = nb (ex : $nbArticle)
+
+
+#### Variable $_get $_post et navabr :
+
+# pour toutes les pages codée en dur (accueil, contact, connect...)
+$_GET['p'];
+
+# pour les category par id 
+$_GET['categoryId']; 
+$categoryId;
+
+# pour les articles par id
+$_GET['articleId'];
+$articleId;
+
+# connexion : 
+$_POST['login'];
+$_POST['pwd'];
+$login;
+$pwd;
+
+#inscription user (sub = subscribe, s'inscrire):
+$_POST['subLogin'];
+$_POST['subMail'];
+$_POST['subPwd'];
+$subLogin;
+$subMail;
+$subPwd;
+$isSub = subUser();
+
+# contact :
+$_POST['contactName'];
+$_POST['contactMail'];
+$_POST['contactMessage'];
+$name;
+$mail;
+$message;
+$isSend = sendMessage();
+
+## pour tout les foreach on utilise $item
+# ex foreach($allArticles as $item) :
+
+
+### FONCTION MODELS 
+##ARTICLES :
+
+#navbar :
+
+$articleMenu = getCategoryMenu();
+
+# tous les articles par ordre chrono / page d'accueil :
+$allArticles = getAllArticle();
+
+# les articles par category :
+$articlesByCategory = getArticleByCategory();
+
+# article seul par id :
+$articlesById = getArticleById();
+
+$nbArcticle;
+
+## CRUD / admin : 
+articleUpdate();
+articleDelete();
+articleInsert();
+
+
+## USER :
+
+$userConnect = connectUser();
+deconnect();
+userValidate();
+userDelete();
+$userPermission;

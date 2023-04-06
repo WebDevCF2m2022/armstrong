@@ -1,3 +1,8 @@
+<?php
+
+$articleMenu = getCategoryMenu($db);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +14,22 @@
     <title><?= $title ?></title>
     
     <link rel="stylesheet" href="css/style.css">
+    <nav>
+        <a href="?p=homePage">Accueil</a>
+        
+        <!-- lien pour les category : -->
+        <?php
+        foreach($articleMenu as $item) : 
+        ?>
 
-</head>
-<body>
-    
+        <a href="?categoryId=<?=$item['id_category']?>"><?=$item['name_category']?></a>
+
+        <?php
+        endforeach;
+        ?>
+        <a href="?p=contact">Contact</a>
+        <a href="?p=connect">Connexion</a>
+
+    </nav>
+
+
