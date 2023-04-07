@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : jeu. 06 avr. 2023 à 12:28
+-- Généré le : jeu. 06 avr. 2023 à 13:26
 -- Version du serveur : 10.6.5-MariaDB
 -- Version de PHP : 8.1.0
 
@@ -36,12 +36,10 @@ CREATE TABLE IF NOT EXISTS `article` (
   `sound_article` varchar(255) NOT NULL,
   `nb_click` int(11) DEFAULT NULL,
   `date_article` datetime NOT NULL DEFAULT current_timestamp(),
-  `category_id_category` int(11) DEFAULT NULL,
   `user_id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_article`),
-  KEY `fk_article_category1_idx` (`category_id_category`),
   KEY `fk_article_user1_idx` (`user_id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -58,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `artist` (
   `article_id_article` int(11) NOT NULL,
   PRIMARY KEY (`id_artist`),
   KEY `fk_artist_article1_idx` (`article_id_article`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -72,6 +70,21 @@ CREATE TABLE IF NOT EXISTS `category` (
   `description_category` text NOT NULL,
   `name_category` varchar(255) NOT NULL,
   PRIMARY KEY (`id_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `category_has_article`
+--
+
+DROP TABLE IF EXISTS `category_has_article`;
+CREATE TABLE IF NOT EXISTS `category_has_article` (
+  `category_id_category` int(11) NOT NULL,
+  `article_id_article` int(11) NOT NULL,
+  PRIMARY KEY (`category_id_category`,`article_id_article`),
+  KEY `fk_category_has_article_article1_idx` (`article_id_article`),
+  KEY `fk_category_has_article_category1_idx` (`category_id_category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `sub_date` date NOT NULL DEFAULT current_timestamp(),
   `permission_user` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -132,7 +145,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `fk_article_category1` FOREIGN KEY (`category_id_category`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_article_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -140,6 +152,13 @@ ALTER TABLE `article`
 --
 ALTER TABLE `artist`
   ADD CONSTRAINT `fk_artist_article1` FOREIGN KEY (`article_id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `category_has_article`
+--
+ALTER TABLE `category_has_article`
+  ADD CONSTRAINT `fk_category_has_article_article1` FOREIGN KEY (`article_id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_category_has_article_category1` FOREIGN KEY (`category_id_category`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `image`
