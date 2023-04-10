@@ -23,6 +23,7 @@ elseif(false){
 }
 
 else{
+    $allArticle = getAllArticle($db);
     include_once '../view/homepageView.php';
 
 }
