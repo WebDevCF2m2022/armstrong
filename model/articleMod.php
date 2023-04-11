@@ -43,10 +43,13 @@ function getCategoryById(PDO $db, $id):array|bool{
 }
 
 function getArticleByCategory(PDO $db, $id){
-    $sql = "SELECT * FROM `category_has_article`";
+    $sql = "SELECT a.name_article, c.name_category FROM article a 
+    JOIN category_has_article h ON h.article_id_article = a.id_article 
+    JOIN category c ON h.category_id_category = c.id_category 
+    WHERE c.id_category = :id ;";
 
     $prepare = $db->prepare($sql);
-    // $prepare->bindValue(':id',$id,PDO::PARAM_INT);
+    $prepare->bindValue(':id',$id,PDO::PARAM_INT);
     try{
         $prepare->execute();
     }catch(Exception $e){
