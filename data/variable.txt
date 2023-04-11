@@ -59,6 +59,7 @@ $articleMenu = getCategoryMenu(); DONE
 $allArticles = getAllArticle(); DONE
 
 # les articles par category :
+$categoryById = getCategoryById($db,$id);
 $articlesByCategory = getArticleByCategory();
 
 # article seul par id :
