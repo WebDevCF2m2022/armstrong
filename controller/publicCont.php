@@ -3,16 +3,16 @@
 if(isset($_GET['p'])){
     switch($_GET['p']){
         case 'homePage':
-            include_once '../view/homepageView.php';
+            include_once '../view/publicView/homepageView.php';
             break;
         case 'contact':
-            include_once '../view/contactView.php';
+            include_once '../view/publicView/contactView.php';
             break;
         case 'connect':
-            include_once '../view/connectView.php';
+            include_once '../view/publicView/connectView.php';
             break;  
         default: 
-            include_once '../view/homepageView.php';
+            include_once '../view/publicView/homepageView.php';
             break;
     }      
 
@@ -35,7 +35,7 @@ elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){
 
         $articlesByCategory = getArticleByCategory($db, $categoryId);
         $nbPost = count($articlesByCategory);
-        include_once("../view/categoryView.php");
+        include_once("../view/publicView/categoryView.php");
         var_dump($articlesByCategory);
 
     }
@@ -45,6 +45,6 @@ elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){
 
 else{
     $allArticle = getAllArticle($db);
-    include_once '../view/homepageView.php';
+    include_once '../view/publicView/homepageView.php';
 
 }
