@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : lun. 10 avr. 2023 à 10:20
+-- Généré le : mer. 12 avr. 2023 à 10:04
 -- Version du serveur : 10.6.5-MariaDB
--- Version de PHP : 8.2.0
+-- Version de PHP : 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -112,6 +112,14 @@ CREATE TABLE IF NOT EXISTS `category_has_article` (
   KEY `fk_category_has_article_category1_idx` (`category_id_category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `category_has_article`
+--
+
+INSERT INTO `category_has_article` (`category_id_category`, `article_id_article`) VALUES
+(4, 12),
+(5, 13);
+
 -- --------------------------------------------------------
 
 --
@@ -138,20 +146,20 @@ CREATE TABLE IF NOT EXISTS `image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` text NOT NULL,
   `url` varchar(255) NOT NULL,
+  `position` tinyint(1) UNSIGNED NOT NULL COMMENT '1 =principal\r\n2 et 3 c''est les autres',
   `article_id_article` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_article1_idx` (`article_id_article`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `image`
 --
 
-INSERT INTO `image` (`id`, `nom`, `url`, `article_id_article`) VALUES
-(1, 'tromp1', 'https://www.radioclassique.fr/wp-content/thumbnails/uploads/2020/09/trompette-tt-width-1200-height-630-fill-0-crop-1-bgcolor-ffffff.jpg', 12),
-(2, 'sax1', 'https://images.musicstore.de/images/1280/yanagisawa-a-wo-2-eb-alto-saxophone_1_BLA0003898-000.jpg', 13),
-(3, 'tromp1', 'https://www.radioclassique.fr/wp-content/thumbnails/uploads/2020/09/trompette-tt-width-1200-height-630-fill-0-crop-1-bgcolor-ffffff.jpg', 12),
-(4, 'sax1', 'https://images.musicstore.de/images/1280/yanagisawa-a-wo-2-eb-alto-saxophone_1_BLA0003898-000.jpg', 13);
+INSERT INTO `image` (`id`, `nom`, `url`, `position`, `article_id_article`) VALUES
+(1, 'tromp1', 'https://www.radioclassique.fr/wp-content/thumbnails/uploads/2020/09/trompette-tt-width-1200-height-630-fill-0-crop-1-bgcolor-ffffff.jpg', 1, 12),
+(2, 'sax1', 'https://images.musicstore.de/images/1280/yanagisawa-a-wo-2-eb-alto-saxophone_1_BLA0003898-000.jpg', 1, 13),
+(5, 'tromp2', 'https://img01.ztat.net/article/spp-media-p1/dac12ec18050491abb4b612320e11322/e08c1acfe78848e39746cc709600ebe0.jpg?imwidth=762&filter=packshot', 2, 12);
 
 -- --------------------------------------------------------
 
