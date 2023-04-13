@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../config.php';
 require_once '../model/articleMod.php';
 require_once '../model/connectionMod.php';
