@@ -44,6 +44,24 @@ elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){
     }
 }
 
+elseif(isset($_POST['connect'])){ 
+
+    // si la personne a envoyé le formulaire
+    if(isset($_POST['login'],$_POST['pwd'])){
+        $connect = connectUser($db,
+                            $_POST['login'],
+                            $_POST['pwd']
+                        );
+        // si $connect est du texte
+        if(is_string($connect)) {
+            $message = $connect;
+            echo $message;
+        // sinon (par défaut un booléen)
+        }else{
+            //header("Location: ./");
+        }
+    }
+}
 
 
 else{
