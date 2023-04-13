@@ -31,8 +31,8 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `name_article` varchar(255) NOT NULL,
-  `min-description_article` text NOT NULL,
-  `max-description_article` text NOT NULL,
+  `min_description_article` text NOT NULL,
+  `max_description_article` text NOT NULL,
   `sound_article` varchar(255) NOT NULL,
   `nb_click` int(11) DEFAULT NULL,
   `date_article` datetime NOT NULL DEFAULT current_timestamp(),
