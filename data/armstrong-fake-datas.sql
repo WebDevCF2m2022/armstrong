@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id_article`, `name_article`, `min-description_article`, `max-description_article`, `sound_article`, `nb_click`, `date_article`, `user_id_user`) VALUES
+INSERT INTO `article` (`id_article`, `name_article`, `min_description_article`, `max_description_article`, `sound_article`, `nb_click`, `date_article`, `user_id_user`) VALUES
 (12, 'Trompette', 'mini descritpion trompette', 'grosse description\r\ngrosse description\r\ngrosse description\r\ngrosse description\r\ngrosse description\r\ngrosse description\r\ngrosse description\r\ngrosse description', 'son de trompette', NULL, '2023-04-10 11:24:49', 3),
 (13, 'Saxophone', 'petite description de saxo', 'grosse description de saxo\r\ngrosse description de saxo\r\ngrosse description de saxo\r\ngrosse description de saxo\r\ngrosse description de saxo\r\ngrosse description de saxo', 'son de saxo', NULL, '2023-04-10 11:24:49', 4);
 

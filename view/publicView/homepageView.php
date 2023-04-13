@@ -9,7 +9,7 @@ foreach($allArticle as $item):
 ?>
 
 <h2><?= $item['name_article']; ?> (<?= $item['id_article'];?>)</h2>
-<img src="<?= $item['url']; ?>" alt="" width="300px">
+<a href="?articleId=<?=$item['id_article']?>"><img src="<?=$item['url']?>" alt="<?= $item['name_article']?>" width="300px"></a>
 <p><?= $item['sound_article']; ?></p>
 <p><?= $item['min_description_article']; ?></p>
 <p><?= $item['date_article']; ?></p> by <p><?= $item['login_user']; ?></p>
