@@ -43,7 +43,7 @@ function getCategoryById(PDO $db, $id):array|bool{
 }
 
 function getArticleByCategory(PDO $db, $id){
-    $sql = "SELECT a.name_article, a.sound_article, a.min_description_article, c.name_category, i.url 
+    $sql = "SELECT a.id_article, a.name_article, a.sound_article, a.min_description_article, c.name_category, i.url 
     FROM article a 
     JOIN image i ON i.article_id_article = a.id_article
     JOIN category_has_article h ON h.article_id_article = a.id_article 
