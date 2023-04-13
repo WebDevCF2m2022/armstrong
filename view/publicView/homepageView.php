@@ -15,3 +15,6 @@ foreach($allArticle as $item):
 <p><?= $item['date_article']; ?></p> by <p><?= $item['login_user']; ?></p>
 <hr>
 <?php endforeach;?>
+
+
+<?php include_once "../view/include/footer.php";?>
