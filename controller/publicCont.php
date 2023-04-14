@@ -63,6 +63,13 @@ elseif(isset($_POST['connect'])){
     }
 }
 
+elseif(isset($_GET['articleId'])&&ctype_digit($_GET['articleId'])){
+    $articleId = $_GET['articleId'];
+    $articleById = getArticleById($db, $articleId);
+    $imageByArticleID = getImageByarticleId($db, $articleId);
+    include_once '../view/publicView/articleView.php';
+}
+
 
 else{
     $allArticle = getAllArticle($db);
