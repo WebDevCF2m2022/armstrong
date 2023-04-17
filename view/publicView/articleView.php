@@ -8,7 +8,7 @@ include_once '../view/include/header.php';
 
 <?php foreach($articleById as $article): 
     $textArticle = $article['max_description_article']; 
-    $paragraphe = breakText($textArticle, strlen($textArticle)/3);
+    $paragraphe = breakText($textArticle, strlen($textArticle)/2);
 ?>
     
     <h2><?= $article['name_article'] ?></h2>
@@ -28,7 +28,7 @@ include_once '../view/include/header.php';
     <?php if(!empty($imageByArticleID[2]['url'])):?>
         <img src="<?= $imageByArticleID[2]['url'] ?> " alt="">
     <?php endif; ?>
-        <p><?= $paragraphe['2']?></p>
+   
 
 <?php endforeach; ?>
 
