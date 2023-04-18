@@ -24,7 +24,3 @@ function inscriptionUser(PDO $db){
         }
     }
     }
-   
-     
-      
-   
