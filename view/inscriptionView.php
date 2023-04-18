@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,18 +12,24 @@
 <body>
 
     <div class="container">
-        <form action="" class="col-md-6" method="POST">
-            <h1>Se connecter</h1>
+        <form action="" class="col-md-6">
+            <h1>créer un compte</h1>
             <div class="form-group">
                 <input type="text" name="pseudo" id="" class="form-control" placeholder="Entrer votre pseudo">
             </div>
             <div class="form-group">
                 <input type="text" name="password" id="" class="form-control" placeholder="Entrer votre password">
             </div>
-
             <div class="form-group">
-                <a href="?p=Inscription" class="btn btn-warning">créer un compte</a>
-                <input type="submit" value="je me connecte" class="btn btn-primary">
+                <input type="text" name="confirmPassword" id="" class="form-control" placeholder="Veuillez confirmer votre password">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" name="role" id="" class="form-check-input">
+                <label for="role">Je souhaite devenir membre</label>
+            </div>
+            <div class="form-group">
+                <a href="?p=connect" class="btn btn-warning">connexion</a>
+                <input type="submit" value="créer mon compte" class="btn btn-primary">
             </div>
         </form>
     </div>
