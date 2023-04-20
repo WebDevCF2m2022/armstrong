@@ -13,10 +13,7 @@ if(isset($_GET['p'])){
         case 'connect':
             include_once '../view/publicView/connectView.php';
             break;  
-        case 'Inscription':
-             if (!empty($_POST) && $_POST['password'] == $_POST['confirmPassword']) {
-                    echo inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email'],);
-                }
+        case 'sub':
                 include_once '../view/publicView/inscriptionView.php';
                 break;
         default: 
@@ -57,29 +54,25 @@ elseif(isset($_GET['articleId'])&&ctype_digit($_GET['articleId'])){
     include_once '../view/publicView/articleView.php';
 }
 
-
 else{
     $allArticle = getAllArticle($db);
     include_once '../view/publicView/homepageView.php';
-
+    
 }
 
+//check varaible $POST pour connexion et inscription
 if(isset($_POST['login'],$_POST['pwd'])){
-        $connect = connectUser($db,
-                            $_POST['login'],
-                            $_POST['pwd']
-                        );
-        // si $connect est du texte
-        if(is_string($connect)) {
-            $message = $connect;
-             echo $message;
-        // sinon (par défaut un booléen)
-        }else{
-            //header("Location: ./");
-            echo "oui";
-        }
-
-}
-
-
-
+    $connect = connectUser($db,$_POST['login'],$_POST['pwd']);                       
+    if(is_string($connect)) {
+        $message = $connect;
+        echo $message;                   
+    }else{
+        //header("Location: ./");
+        echo "oui";
+    }
+}            
+                    
+elseif (!empty($_POST) && $_POST['password'] == $_POST['confirmPassword']) {
+    $inscrit = inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email'],);
+    }
+                    
