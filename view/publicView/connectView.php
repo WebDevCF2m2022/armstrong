@@ -15,9 +15,9 @@ echo 'Connect';
 
   <input type="submit" name="connect">
 </form>
+<button type="button"><a href="?p=sub">Inscrivez vous ici</a></button>
 
 <?php
-//var_dump($message);
   if (isset($message)) {
     echo "<h1>$message</h1>";
   }

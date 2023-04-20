@@ -1,6 +1,8 @@
 <?php
+
+$title = 'inscription';
 include_once '../view/include/header.php';
-var_dump($_POST);
+
 ?>
 
 <div class="container">
