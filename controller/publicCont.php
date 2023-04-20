@@ -44,7 +44,15 @@ elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){
     }
 }
 
-elseif(isset($_POST['connect'])){ 
+
+
+
+else{
+    $allArticle = getAllArticle($db);
+    include_once '../view/publicView/homepageView.php';
+
+}
+//if(isset($_POST['connect'])){ 
 
     // si la personne a envoyé le formulaire
     if(isset($_POST['login'],$_POST['pwd'])){
@@ -55,17 +63,11 @@ elseif(isset($_POST['connect'])){
         // si $connect est du texte
         if(is_string($connect)) {
             $message = $connect;
-            echo $message;
+             echo $message;
         // sinon (par défaut un booléen)
         }else{
             //header("Location: ./");
+            echo "oui";
         }
     }
-}
 
-
-else{
-    $allArticle = getAllArticle($db);
-    include_once '../view/publicView/homepageView.php';
-
-}
