@@ -25,7 +25,7 @@ if ($queryConnect->rowCount() === 0) {
 
 $recup = $queryConnect->fetch(PDO::FETCH_ASSOC);
 
-if ($pwd === $recup['pwd_user']) {
+if (password_verify($pwd , $recup['pwd_user'])) {
 
     $_SESSION = $recup;
 
