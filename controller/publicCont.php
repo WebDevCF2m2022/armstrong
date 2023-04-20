@@ -13,6 +13,12 @@ if(isset($_GET['p'])){
         case 'connect':
             include_once '../view/publicView/connectView.php';
             break;  
+        case 'Inscription':
+             if (!empty($_POST) && $_POST['password'] == $_POST['confirmPassword']) {
+                    echo inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email'],);
+                }
+                include_once '../view/publicView/inscriptionView.php';
+                break;
         default: 
             $allArticle = getAllArticle($db);
             include_once '../view/publicView/homepageView.php';

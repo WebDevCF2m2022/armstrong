@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : jeu. 20 avr. 2023 à 08:54
+-- Généré le : jeu. 20 avr. 2023 à 09:36
 -- Version du serveur : 10.6.5-MariaDB
 -- Version de PHP : 8.1.0
 
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pwd_user` varchar(255) NOT NULL,
   `email_user` varchar(255) NOT NULL,
   `sub_date` text NOT NULL DEFAULT current_timestamp(),
-  `permission_user` tinyint(1) NOT NULL,
+  `permission_user` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
