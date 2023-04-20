@@ -17,6 +17,7 @@ echo 'Connect';
 </form>
 
 <?php
+var_dump($message);
   if (isset($message)) {
     echo "<h1>$message</h1>";
   }
