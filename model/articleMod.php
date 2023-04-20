@@ -61,3 +61,64 @@ function getArticleByCategory(PDO $db, $id){
     $prepare->closeCursor();
     return $result;
 }
+
+
+// recupere les articles avec l'id
+function getArticleById($db, $id){
+    $sql = "SELECT a.id_article, a.name_article, a.max_description_article, a.sound_article, .a.date_article,  u.login_user 
+    FROM `article` a 
+    JOIN user u
+    ON a.user_id_user = u.id_user
+    WHERE id_article = :id;";
+
+    $prepare = $db->prepare($sql);
+    $prepare->bindValue(':id',$id,PDO::PARAM_INT);
+    try{
+        $prepare->execute();
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $prepare->closeCursor();
+    return $result;
+}
+//  et recupere les images avec l'ic correspondant
+function getImageByarticleId($db, $id){
+    $sql = "SELECT * FROM `image` WHERE article_id_article = :id;";
+
+    $prepare = $db->prepare($sql);
+    $prepare->bindValue(':id',$id,PDO::PARAM_INT);
+    try{
+        $prepare->execute();
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $prepare->closeCursor();
+    return $result;
+}
+
+// pour splitter la description en 3 paragraphes
+function breakText($text, $minLength, $needle='.') {
+    $delimiter = preg_quote($needle);
+    $match = preg_match_all("/.*?$delimiter/",$text, $matches);
+
+    if ($match == 0)
+        return array($text);
+
+    $sentences = current($matches);
+    $paras = array();
+    $tmp = '';
+
+    foreach ($sentences as $sentence) {
+        $tmp .= $sentence;
+        if (strlen($tmp) > $minLength){
+            $paras[] = $tmp;
+            $tmp = '';
+        }
+    }
+
+    if ($tmp != '')
+    $paras[] = $tmp;
+    return $paras;
+}

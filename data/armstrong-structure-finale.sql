@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : jeu. 06 avr. 2023 à 13:26
+-- Généré le : lun. 17 avr. 2023 à 13:09
 -- Version du serveur : 10.6.5-MariaDB
 -- Version de PHP : 8.1.0
 
@@ -112,9 +112,10 @@ DROP TABLE IF EXISTS `image`;
 CREATE TABLE IF NOT EXISTS `image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` text NOT NULL,
-  `size` int(11) NOT NULL,
-  `bin` longblob NOT NULL,
-  `typ` varchar(100) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `position` tinyint(1) UNSIGNED NOT NULL COMMENT '1 = photo principal\r\nou 2 ou 3 pour les autres\r\n',
+  `credit_image_name` varchar(255) NOT NULL,
+  `credit_image_link` varchar(255) NOT NULL,
   `article_id_article` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_article1_idx` (`article_id_article`)
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `sub_date` date NOT NULL DEFAULT current_timestamp(),
   `permission_user` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contraintes pour les tables déchargées
