@@ -24,11 +24,10 @@ try {
 }
 
 
-
-if(true){
-    include_once '../controller/publicCont.php';
-}else{
+if(isset($_SESSION['myID'])&&$_SESSION['myID']==session_id()){
     include_once '../controller/privateCont.php';
+}else{
+    include_once '../controller/publicCont.php';
 }
 
 

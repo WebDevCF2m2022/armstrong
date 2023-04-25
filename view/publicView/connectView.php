@@ -3,7 +3,7 @@
 $title = "Connect";
 include_once '../view/include/header.php';
 
-echo 'Connect';
+
 ?>
 <form action="" method="POST">
   <label for="login">Nom d'utilisateur :</label>
