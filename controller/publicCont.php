@@ -67,8 +67,8 @@ if(isset($_POST['login'],$_POST['pwd'])){
         $message = $connect;
         echo $message;                   
     }else{
-        //header("Location: ./");
-        echo "oui";
+        header("Location: ./");
+      
     }
 }            
                     

@@ -14,8 +14,11 @@ function getCategoryMenu(PDO $db): array {
 // ARTICLES :
 
 function getAllArticle(PDO $db): array{
-    $sql = "SELECT `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `user_id_user`, `login_user`, `url` FROM `article` JOIN user ON article.user_id_user = user.id_user 
-    JOIN image ON image.article_id_article = article.id_article WHERE image.position = 1
+    $sql = "SELECT `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `user_id_user`, `login_user`, `url`, `name_category`, `id_category` FROM `article` JOIN user ON article.user_id_user = user.id_user 
+    JOIN image ON image.article_id_article = article.id_article 
+    JOIN category_has_article h ON h.article_id_article = article.id_article 
+    JOIN category c ON h.category_id_category = c.id_category 
+    WHERE image.position = 1
     ORDER BY `id_article` ASC";
 
     try{
