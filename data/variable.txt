@@ -68,9 +68,9 @@ $articlesById = getArticleById();
 $nbArcticle;
 
 ## CRUD / admin : 
-articleUpdate();
-articleDelete();
-articleInsert();
+$articleUpdate = articleUpdate();
+$articleDelete = articleDelete();
+$articleInsert = articleInsert();
 
 
 ## USER :
