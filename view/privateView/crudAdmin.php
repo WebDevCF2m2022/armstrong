@@ -34,3 +34,7 @@ include_once '../view/include/header.php';
     endforeach;
     ?>
 </table>
+
+<?php
+include_once '../view/include/footer.php';
+?>
