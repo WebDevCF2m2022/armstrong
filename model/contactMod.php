@@ -16,3 +16,22 @@ function inscriptionUser(PDO $db, string $pseudo, string $mdp, string $email)
         return $e->getMessage();
     }
 }
+
+function sendMessage(PDO $db, string $contactName, string $contactMail, string $contactMessage)
+{
+    $contactName = htmlspecialchars($contactName, ENT_QUOTES);
+    $contactMail = filter_var($contactMail, ENT_QUOTES);// filter_var
+    $contactMessage = htmlspecialchars($contactMessage, ENT_QUOTES);
+    
+    $insertion = $db->prepare('INSERT INTO contact (name_contact, mail_contact, message_contact) VALUES (?,?,?) ');
+    $insertion->bindParam(1, $contactName, PDO::PARAM_STR);
+    $insertion->bindParam(2, $contactMail, PDO::PARAM_STR);
+    $insertion->bindParam(3, $contactMessage, PDO::PARAM_STR);
+    try {
+        $verification = $insertion->execute();
+    } catch (PDOException $e) {
+
+        return ($e->getMessage());
+    }
+}
+

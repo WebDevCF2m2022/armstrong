@@ -81,5 +81,25 @@ if(isset($_POST['login'],$_POST['pwd'])){
 
 }
 
+if(isset($_POST['contactName']) &&
+    isset($_POST['contactMail']) &&
+    isset($_POST['contactMessage'])) {
+        
+    $insertion = $db->prepare('INSERT INTO contact VALUES (NULL, :name_contact, :mail_contact, :message_contact)');
+    $insertion->bindValue(':name_contact', $_POST['contactName']);
+    $insertion->bindValue(':mail_contact', $_POST['contactMail']);
+    $insertion->bindValue(':message_contact', $_POST['contactMessage']);
+    
+    $verification = $insertion->execute();
+    
+    if($verification) {
+        echo "Insertion réussie";
+    } else {
+        echo "Echec de l'insertion";
+    }
+} else {
+    echo "une variable n'est pas déclarée";
+}
+
 
 
