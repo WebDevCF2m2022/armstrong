@@ -70,8 +70,10 @@ function getArticleByCategory(PDO $db, $id){
 
 // recupere les articles avec l'id
 function getArticleById($db, $id){
-    $sql = "SELECT a.id_article, a.name_article, a.max_description_article, a.sound_article, .a.date_article,  u.login_user 
+    $sql = "SELECT a.id_article, a.name_article, a.min_description_article, a.max_description_article, a.sound_article, .a.date_article, a.wiki_article, u.login_user, c.name_category, c.id_category 
     FROM `article` a 
+    JOIN category_has_article h ON h.article_id_article = a.id_article 
+    JOIN category c ON h.category_id_category = c.id_category 
     JOIN user u
     ON a.user_id_user = u.id_user
     WHERE id_article = :id;";

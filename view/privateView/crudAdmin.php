@@ -26,7 +26,7 @@ include_once '../view/include/header.php';
         <td><?= $item['date_article']?></td>
         <td><?= $item['login_user']?></td>
         <td><?= $item['name_category']?></td>
-        <td><a href="?article_update=<?=$item['id']?>">update</a></td>
+        <td><a href="?article_update=<?=$item['id_article']?>">update</a></td>
         <td><a onclick="void(0);let a=confirm('Voulez-vous vraiment supprimer \'<?=$item['name_article']?>\' ?'); if(a){ document.location = '?article_delete=<?=$item['id_article']?>'; };" href="#">delete</a></td>
 
         
