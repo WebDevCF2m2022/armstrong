@@ -6,6 +6,7 @@ var_dump($articleById, $imageByArticleId);
 
 ?>
 
+<!-- balise style a enlever quand on fera le css -->
 <style>
     form input, form textarea {
         display: block;
@@ -26,25 +27,28 @@ var_dump($articleById, $imageByArticleId);
             <textarea name="max_description_article_update" id="max_description_article_update" cols="30" rows="10"><?=$item['max_description_article']?></textarea>
                 <label for="sound_article_update">Extrait audio mp3</label>
             <input type="text" value="<?=$item['sound_article']?>" id="sound_article_update">
-                <label for="wiki_article_update">Extrait audio mp3</label>
+                <label for="wiki_article_update">Wikipedia</label>
             <input type="text" value="<?=$item['wiki_article']?>" id="wiki_article_update"> 
 
             <?php  
 
                 $categoryId = (is_null($item['id_category']))? [] :explode(',', $item['id_category']);                  
                 foreach($allCategory as $category):
-                    $checked = (in_array($category['id_category'],$categoryId))? " checked " : "";
+                $checked = (in_array($category['id_category'],$categoryId))? " checked " : "";
             ?>
                 
-                <input name="id_category[]"  type="checkbox" id="inlineCheckbox1" value="<?= $category['id_category'] ?>" <?=$checked?>>
                 <label for="inlineCheckbox1"><?= $category['name_category'] ?></label>
+                <input name="id_category[]"  type="checkbox" id="inlineCheckbox1" value="<?= $category['id_category'] ?>" <?=$checked?>>²
                          
             <?php endforeach; ?>   
-                <label for="image_add">Photos URL</label>
-                <?php foreach($imageByArticleId as $image): ?>
-                    <input type="text" value="<?=$image['url']?>" name="image_add">
-                <?php endforeach;?>
-
+                <label for="image_add">Photos URL</label>              
+                    <input type="text" value="<?=$imageByArticleId[0]['url']?>" name="image_update_1">
+                    <?php if(!empty($imageByArticleId[1])) :?>
+                    <input type="text" value="<?=$imageByArticleId[1]['url']?>" name="image_update_2">
+                    <?php endif; ?>
+                    <?php if(!empty($imageByArticleId[2])) :?>                    
+                    <input type="text" value="<?=$imageByArticleId[2]['url']?>" name="image_update_3">
+                    <?php endif; ?>
             <input type="submit">
         </form>
 

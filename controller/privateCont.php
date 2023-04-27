@@ -45,6 +45,12 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
 }
 
 else{
-    include_once '../view/privateView/crudAdmin.php';
+    if(isset($_SESSION) && $_SESSION['permission_user']===0){
+
+        include_once '../view/privateView/crudAdmin.php';
+    }else{
+        $articleByUser = getArticleByUserId($db, $_SESSION['id_user']);
+        include_once '../view/privateView/crudUser.php';
+    }
 }
 

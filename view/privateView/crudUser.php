@@ -1,55 +1,46 @@
-<div class="col-lg-12">
-        <h3>Insertion d'un article :  </h3>
-                    <form method="POST" action="" name="Insert">
-                    <?php
-      if(isset($message)):
-    ?>
-<button type="button" class="btn btn-warning"><?=$message?></button><br>
-    <?php
-      endif;
-    ?>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">title</label>
-    <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-    <div id="emailHelp" class="form-text" max="160" min="6">title</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">content</label>
-    <textarea name="content" type="text" class="form-control" id="exampleInputPassword1" required></textarea>
-  </div>
-
-<div class="mb-3">
-  
-  <?php
-foreach($categoryChoice as $item):
-  ?>
-  <div class="form-check form-check-inline">
-  <input name="category_id[]" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="<?= $item['id'] ?>">
-  <label class="form-check-label" for="inlineCheckbox1"><?= $item['title'] ?></label>
-</div>
 <?php
-endforeach;
-var_dump($_POST);
+
+$title = 'admin';
+include_once '../view/include/header.php';
+// var_dump($articleById, $_SESSION);
+
 ?>
-<div class="mb-3">
-<select name='user_id' class="form-select" aria-label="Default select example">
-  <?php
-foreach($userChoice as $item):
-  $we = "";
-  if($item['id']==$_SESSION['id']){
-    $we=" selected";
-  }
-  ?>
-  <option value="<?=$item['id']?>" <?=$we?>><?=$item['userscreen']?></option>
-  <?php
-endforeach;
-  ?>
-</select>
-</div>
-</div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-                
-                </div>
-            </div>
-            </div>
+<button><a href="?deconnect">deconnection</a></button>
+<button><a href="?p=article_add">ajoutez article</a></button>
+    <?php if(empty($articleById)):?>
+        <h2>y'a pas d'articles frer</h2>
+    <?php else: ?>
+<table>
+    <tr>
+        <th>nom d'article</th>
+        <th>description</th>
+        <th>date</th>
+        <th>auteur</th>
+        <th>catégorie</th>
+        <th>update</th>
+        <th>delete</th>
+    </tr>
+    <tr>
+
+        <?php
+        foreach ($articleByUser as $item) :
+        ?>
+            <td><?= $item['name_article'] ?></td>
+            <td><?= $item['min_description_article'] ?></td>
+            <td><?= $item['date_article'] ?></td>
+            <td><?= $item['login_user'] ?></td>
+            <td><?= $item['name_category'] ?></td>
+            <td><a href="?article_update=<?= $item['id_article'] ?>">update</a></td>
+            <td><a onclick="void(0);let a=confirm('Voulez-vous vraiment supprimer \'<?= $item['name_article'] ?>\' ?'); if(a){ document.location = '?p=d&article_delete=<?= $item['id_article'] ?>'; };" href="#">delete</a></td>
+
+
+    </tr>
+    <?php
+        endforeach;
+    endif;
+    ?>
+</table>
+
+<?php
+include_once '../view/include/footer.php';
+?>
