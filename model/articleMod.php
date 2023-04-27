@@ -145,13 +145,13 @@ function postAdminDeleteById(PDO $db, int $id): bool
     }
 }
 
-function getArticleByUserId(PDO $db, $userId): array{
+function getArticleByUserId(PDO $db, $userId){
     $sql = "SELECT `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `wiki_article`, `nb_click`, `user_id_user`, `login_user`, `url`, `name_category`, `id_category`   
     FROM `article` 
-    JOIN user ON article.user_id_user = user.id_user 
     JOIN image ON image.article_id_article = article.id_article 
     JOIN category_has_article h ON h.article_id_article = article.id_article 
     JOIN category c ON h.category_id_category = c.id_category 
+    JOIN user ON article.user_id_user = user.id_user 
     WHERE  user_id_user = $userId
     ORDER BY `id_article` ASC";
 
