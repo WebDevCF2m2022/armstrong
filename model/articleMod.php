@@ -131,15 +131,16 @@ function breakText($text, $minLength, $needle='.') {
 }
 
 //suprimer un post
-function postAdminDeleteById(PDO $db, int $id): bool {
+function postAdminDeleteById(PDO $db, int $id): bool
+{
     // pour utiliser l'exec plutôt que le prepare/execute, mauvaise pratique
-    $sql="DELETE FROM `post` WHERE id=$id";
+    $sql = "DELETE FROM `article` WHERE id_article=$id";
 
-    try{
+    try {
         // envoie 1 en cas de réussite (nb de lignes affectées par exec), 0 en cas d'échec -> true ou false
-        return ($db->exec($sql))? true : false;
-    }catch(Exception $e){
+        $exec = $db->exec($sql);
+        return true;
+    } catch (Exception $e) {
         die($e->getMessage());
     }
-
 }
