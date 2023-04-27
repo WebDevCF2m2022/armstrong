@@ -2,12 +2,12 @@
 
 $title = 'admin';
 include_once '../view/include/header.php';
-// var_dump($articleById, $_SESSION);
+// var_dump($_SESSION['id_user'],$articleByUser);
 
 ?>
 <button><a href="?deconnect">deconnection</a></button>
 <button><a href="?p=article_add">ajoutez article</a></button>
-    <?php if(empty($articleById)):?>
+    <?php if(empty($articleByUser)):?>
         <h2>y'a pas d'articles frer</h2>
     <?php else: ?>
 <table>
