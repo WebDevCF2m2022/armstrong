@@ -8,13 +8,14 @@ if(isset($_GET['deconnect'])){
     }       
 }
 
-elseif(isset($_GET['p'])){
-    if($_GET['p']==="article_delete"){
-    }elseif(isset($_GET['deletePost'])&&ctype_digit($_GET['deletePost'])){
+if(isset($_GET['p'])){
+    if($_GET['p']==="article_id"){
         
-        $postId = (int) $_GET['deletePost'];
+    }elseif(isset($_GET['article_delete'])&&ctype_digit($_GET['article_delete'])){
         
-        if(postAdminDeleteById($connectPDO,$postId)){
+        $postId = (int) $_GET['article_delete'];
+        
+        if(postAdminDeleteById($db,$postId)){
             header("Location: ./?m=L'article dont l'id est $postId a été supprimé");
             exit();
         }else{
@@ -22,6 +23,9 @@ elseif(isset($_GET['p'])){
             exit();
         }
         echo 'delete';
+    }elseif($_GET['p']==="article_update"){
+        
+        echo 'update';
     }elseif($_GET['p']==="article_add"){
         
         include_once '../view/privateView/addArticleView.php';
@@ -32,7 +36,7 @@ elseif(isset($_GET['p'])){
     
 }
 
-if(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
+elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
     $articleUpdateId = (int) $_GET['article_update']; 
     $articleById = getArticleById($db, $articleUpdateId);
     $allCategory = getCategoryMenu($db);
