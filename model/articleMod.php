@@ -144,3 +144,24 @@ function postAdminDeleteById(PDO $db, int $id): bool
         die($e->getMessage());
     }
 }
+
+function getArticleByUserId(PDO $db, $userId): array{
+    $sql = "SELECT `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `wiki_article`, `nb_click`, `user_id_user`, `login_user`, `url`, `name_category`, `id_category`   
+    FROM `article` 
+    JOIN user ON article.user_id_user = user.id_user 
+    JOIN image ON image.article_id_article = article.id_article 
+    JOIN category_has_article h ON h.article_id_article = article.id_article 
+    JOIN category c ON h.category_id_category = c.id_category 
+    WHERE  user_id_user = $userId
+    ORDER BY `id_article` ASC";
+
+    try{
+        $query = $db->query($sql);
+    }catch(Exception $e){
+        die($e->getMessage());
+    }
+    
+    $bp = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query->closeCursor();
+    return $bp;
+}
