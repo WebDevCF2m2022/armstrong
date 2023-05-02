@@ -9,9 +9,7 @@ if(isset($_GET['deconnect'])){
 }
 
 if(isset($_GET['p'])){
-    if($_GET['p']==="article_id"){
-        
-    }elseif(isset($_GET['article_delete'])&&ctype_digit($_GET['article_delete'])){
+    if(isset($_GET['article_delete'])&&ctype_digit($_GET['article_delete'])){
         
         $postId = (int) $_GET['article_delete'];
         
@@ -23,15 +21,20 @@ if(isset($_GET['p'])){
             exit();
         }
         echo 'delete';
-    }elseif($_GET['p']==="article_update"){
-        
-        echo 'update';
-    }elseif($_GET['p']==="article_add"){
+    }
+    elseif($_GET['p']==="article_add"){
         
         include_once '../view/privateView/addArticleView.php';
-    }else{
         
-        include_once '../view/privateView/crudAdmin.php';  
+    }
+    else{
+        if(isset($_SESSION) && $_SESSION['permission_user']===0){
+    
+            include_once '../view/privateView/crudAdmin.php';
+        }else{
+            $articleByUser = getArticleByUserId($db, $_SESSION['id_user']);
+            include_once '../view/privateView/crudUser.php';
+        }
     }
     
 }

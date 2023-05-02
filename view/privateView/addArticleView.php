@@ -2,7 +2,7 @@
 
 $title = "ajout d'article";
 include_once '../view/include/header.php';
-var_dump($allArticle);
+var_dump($_POST);
 ?>
 
 <!-- <style> et <hr> à enlever quand il faudra styliser -->
@@ -25,13 +25,13 @@ var_dump($allArticle);
     <input type="text" placeholder="URL photo 3 (optionnelle)" name="url_image_add_3">
         <hr>
     <p>Choisissez une ou plusieurs catégorie(s)</p>
-    <input type="checkbox" name="perce cylindrique" id="perce cylindrique">
+    <input type="checkbox" name="perce_cylindrique" id="perce cylindrique">
     <label for="perce cylindrique">perce cylindrique</label>
         <hr>
-    <input type="checkbox" name="perce conique" id="perce conique">
+    <input type="checkbox" name="perce_conique" id="perce conique">
     <label for="perce conique">perce conique</label>
         <hr>
-    <input type="checkbox" name="perce hybride" id="perce hybride">
+    <input type="checkbox" name="perce_hybride" id="perce hybride">
     <label for="perce hybride">perce cylindrique</label>
     <input type="submit" value="envois">
 
