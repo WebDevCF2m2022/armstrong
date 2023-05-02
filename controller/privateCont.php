@@ -41,6 +41,31 @@ if(isset($_GET['p'])){
 
 elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
     $articleUpdateId = (int) $_GET['article_update']; 
+
+    if(isset($_POST['name_article_update'])){ 
+
+        $updateTitle = htmlspecialchars(strip_tags(trim($_POST['name_article_update'])),ENT_QUOTES);
+        $updateMin = htmlspecialchars(strip_tags(trim($_POST['min_description_article_update'])),ENT_QUOTES);
+        $updateMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article_update'])),ENT_QUOTES);
+        $updateSound = htmlspecialchars(strip_tags(trim($_POST['sound_article_update'])),ENT_QUOTES);
+        $updateWiki = htmlspecialchars(strip_tags(trim($_POST['wiki_article_update'])),ENT_QUOTES);
+        $updateImage = htmlspecialchars(strip_tags(trim($_POST['image_update_1'])),ENT_QUOTES);
+        
+
+        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage);
+        if(is_string($updateArticle) ){
+
+            $problem = $updateArticle;
+        }
+        if($updateArticle===true){
+            
+            $problem = "L'article a bien été modifié";
+            // <script>
+            // setTimeout(\"location.href = './';\", 2000);
+            // </script>";
+        }
+    }
+
     $articleById = getArticleById($db, $articleUpdateId);
     $allCategory = getCategoryMenu($db);
     $imageByArticleId = getImageByarticleId($db, $articleUpdateId);
