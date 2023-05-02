@@ -1,0 +1,96 @@
+.box {
+    width: 500px;
+    height: auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 3px;
+}
+.box h3 strong {
+    color: #5260ad;
+    font-weight: 900;
+}
+.formbloc h3 {
+    color: #666;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 45px;
+}
+
+.formbloc .formgroupe {
+    position: relative;
+    display: flex;
+    margin-bottom: 50px;
+}
+.formbloc .formgroupe label {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transition: translateY(-50%);
+    color: #aaa;
+    font-size: 20px;
+    transition: 0.4s ease-out;
+}
+
+.inputUser {
+    display: block;
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 3px solid #aaa;
+    color: #666;
+    font-size: 20px;
+}
+
+.formgroupe:nth-child(4) {
+    margin-bottom: 65px;
+    justify-content: center;
+}
+
+.buttonsub {
+    display: block;
+    width: auto;
+    padding: 15px 60px;
+    border: 3px solid #8b97d7;
+    border-radius: 999px;
+    background-image: linear-gradient(to right, transparent 50%,
+    #5260ad 50%, #8b97d7);
+    background-size: 200%;
+    color: #8b97d7;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.buttonsub:hover {
+    color:#fff;
+    background-position: 100%;
+    border: 3px solid #fff;
+}
+
+.formbloc .mdpperdu a {
+    color: #8b97d7;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+.formbloc .mdpperdu a:hover {
+    border-bottom-color: #8b97d7;
+}
+
+/*Animation*/
+
+.formbloc .formgroupe:focus-within label,
+.formbloc .formgroupe.animation label {
+    top: 0px;
+    transform: translateY(-100%);
+    color: #8b97d7;
+}
+
+.formgroupe:focus-within input,
+.formgroupe.animation input {
+    border-bottom-color:#8b97d7 ;
+}
