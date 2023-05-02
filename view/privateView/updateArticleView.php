@@ -6,7 +6,7 @@ var_dump($articleById, $imageByArticleId);
 
 ?>
 
-<!-- balise style a enlever quand on fera le css -->
+<!-- balise style à enlever quand on fera le css -->
 <style>
     form input, form textarea {
         display: block;
@@ -38,17 +38,24 @@ var_dump($articleById, $imageByArticleId);
             ?>
                 
                 <label for="inlineCheckbox1"><?= $category['name_category'] ?></label>
-                <input name="id_category[]"  type="checkbox" id="inlineCheckbox1" value="<?= $category['id_category'] ?>" <?=$checked?>>²
+                <input name="id_category[]"  type="checkbox" id="inlineCheckbox1" value="<?= $category['id_category'] ?>" <?=$checked?>>
                          
             <?php endforeach; ?>   
                 <label for="image_add">Photos URL</label>              
                     <input type="text" value="<?=$imageByArticleId[0]['url']?>" name="image_update_1">
+
                     <?php if(!empty($imageByArticleId[1])) :?>
                     <input type="text" value="<?=$imageByArticleId[1]['url']?>" name="image_update_2">
+                    <?php else: ?>
+                    <input type="text" value="Entrez l'url d'une photo" name="image_update_2">                    
                     <?php endif; ?>
+
                     <?php if(!empty($imageByArticleId[2])) :?>                    
                     <input type="text" value="<?=$imageByArticleId[2]['url']?>" name="image_update_3">
+                    <?php else: ?>
+                    <input type="text" value="Entrez l'url d'une photo" name="image_update_3">
                     <?php endif; ?>
+
             <input type="submit">
         </form>
 
