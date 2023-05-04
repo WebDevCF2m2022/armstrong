@@ -2,7 +2,7 @@
 
 // De copier coller dans articleMod.php et à supprimer : 
 
-function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageUrl){
+function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageUrl=[], $imageExist=[]){
 
     $db -> beginTransaction();
 
@@ -17,12 +17,35 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
     $prepareArticle -> bindValue(":wiki", $articleWiki, PDO::PARAM_STR);   
     $prepareArticle->execute();
 
-    $sqlImage = "UPDATE `image` SET `url`= :url WHERE `position`=1 AND  `article_id_article`=$articleId ";
 
-    $prepareImage = $db->prepare($sqlImage);
-    $prepareImage-> bindValue(":url", $imageUrl, PDO::PARAM_STR);
+    foreach($imageUrl as $key=>$value){
+        
+        if(!empty($imageExist[$key]['url'])){
+            
+            
+            $sqlImageUpdate = "UPDATE `image` SET `url`= :url WHERE `position`= $key+1 AND `article_id_article`=$articleId ";
+            $prepareImageUpdate = $db->prepare($sqlImageUpdate);
+            $prepareImageUpdate-> bindValue(":url", $value, PDO::PARAM_STR);
+            // $prepareImageUpdate->bindValue(":position", $key, PDO::PARAM_INT);
+            $prepareImageUpdate->execute();
+            
+        }else{
+            $key = (int) $key+1;
+            $idString = $articleName . (string) $key ;
+            $sqlImageInsert = "INSERT INTO `image`(`nom`, `url`, `position`,`credit_image_name`,`credit_image_link`, `article_id_article`) VALUES (:nom, :url, :position, 
+        :wikiname, :wikilink, :id)";
+            $prepareImageInsert = $db->prepare($sqlImageInsert);
+            $prepareImageInsert->bindValue(":nom", $idString, PDO::PARAM_STR);
+            $prepareImageInsert-> bindValue(":url", $value, PDO::PARAM_STR);
+            $prepareImageInsert->bindValue(":position", $key, PDO::PARAM_INT);
+            $prepareImageInsert->bindValue(":wikiname", "wikiname",PDO::PARAM_STR);
+            $prepareImageInsert->bindValue(":wikilink", "wikilink",PDO::PARAM_STR);
+            $prepareImageInsert->bindValue(":id",$articleId, PDO::PARAM_INT);
+            $prepareImageInsert->execute();
+        }
 
-    $prepareImage->execute();
+    }
+
 
     try{
         $db->commit();

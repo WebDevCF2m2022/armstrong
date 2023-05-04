@@ -41,6 +41,7 @@ if(isset($_GET['p'])){
 
 elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
     $articleUpdateId = (int) $_GET['article_update']; 
+    $imageByArticleId = getImageByarticleId($db, $articleUpdateId);
 
     if(isset($_POST['name_article_update'])){ 
 
@@ -49,10 +50,10 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         $updateMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article_update'])),ENT_QUOTES);
         $updateSound = htmlspecialchars(strip_tags(trim($_POST['sound_article_update'])),ENT_QUOTES);
         $updateWiki = htmlspecialchars(strip_tags(trim($_POST['wiki_article_update'])),ENT_QUOTES);
-        $updateImage = htmlspecialchars(strip_tags(trim($_POST['image_update_1'])),ENT_QUOTES);
+        $updateImage = $_POST['image_update'];
         
 
-        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage);
+        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $imageByArticleId);
         if(is_string($updateArticle) ){
 
             $problem = $updateArticle;
@@ -60,6 +61,7 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         if($updateArticle===true){
             
             $problem = "L'article a bien été modifié";
+            
             // <script>
             // setTimeout(\"location.href = './';\", 2000);
             // </script>";
@@ -68,7 +70,6 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
 
     $articleById = getArticleById($db, $articleUpdateId);
     $allCategory = getCategoryMenu($db);
-    $imageByArticleId = getImageByarticleId($db, $articleUpdateId);
     include_once '../view/privateView/updateArticleView.php';
 }
 

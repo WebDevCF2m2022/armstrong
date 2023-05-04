@@ -2,7 +2,7 @@
 
 $title = "mise à jour d'article";
 include_once '../view/include/header.php';
-var_dump($_POST);    
+var_dump($updateImage);    
 
 ?>
 
@@ -34,34 +34,34 @@ var_dump($_POST);
             
             <?php  
 
-$categoryId = (is_null($item['id_category']))? [] :explode(',', $item['id_category']);                  
-foreach($allCategory as $category):
+                $categoryId = (is_null($item['id_category']))? [] :explode(',', $item['id_category']);                  
+                foreach($allCategory as $category):
                 $checked = (in_array($category['id_category'],$categoryId))? " checked " : "";
             ?>
                 
                 <label for="inlineCheckbox1"><?= $category['name_category'] ?></label>
                 <input name="id_category[]"  type="checkbox" id="inlineCheckbox1" value="<?= $category['id_category'] ?>" <?=$checked?>>
                 
-                <?php endforeach; ?>   
+            <?php endforeach; ?>   
+
                 <label for="image_add">Photos URL</label>              
-                <input type="text" value="<?=$imageByArticleId[0]['url']?>" name="image_update_1">
-                
+                <input type="text" value="<?=$imageByArticleId[0]['url']?>" name="image_update[]">
+            
                 <?php if(!empty($imageByArticleId[1])) :?>
-                    <input type="text" value="<?=$imageByArticleId[1]['url']?>" name="image_update_2">
-                    <?php else: ?>
-                        <input type="text" value="Entrez l'url d'une photo" name="image_update_2">                    
-                        <?php endif; ?>
-                        
-                        <?php if(!empty($imageByArticleId[2])) :?>                    
-                            <input type="text" value="<?=$imageByArticleId[2]['url']?>" name="image_update_3">
-                            <?php else: ?>
-                                <input type="text" value="Entrez l'url d'une photo" name="image_update_3">
-                                <?php endif; ?>
-                                
-                                <input type="submit">
-                            </form>
+                    <input type="text" value="<?=$imageByArticleId[1]['url']?>" name="image_update[]">
+                <?php else: ?>
+                    <input type="text" value="" name="image_update[]">                    
+                <?php endif; ?>
+                    
+                <?php if(!empty($imageByArticleId[2])) :?>                    
+                    <input type="text" value="<?=$imageByArticleId[2]['url']?>" name="image_update[]">
+                <?php else: ?>
+                    <input type="text" value="" name="image_update[]">
+                <?php endif; ?>
                             
-                            <?php endforeach; ?>
+                <input type="submit">
+                <?php endforeach; ?>
+        </form>
                             
                             
 <?php
