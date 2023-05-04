@@ -32,5 +32,3 @@ $articleMenu = getCategoryMenu($db);
        
 
     </nav>
-
-

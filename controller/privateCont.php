@@ -51,9 +51,10 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         $updateSound = htmlspecialchars(strip_tags(trim($_POST['sound_article_update'])),ENT_QUOTES);
         $updateWiki = htmlspecialchars(strip_tags(trim($_POST['wiki_article_update'])),ENT_QUOTES);
         $updateImage = $_POST['image_update'];
+        $updateCategory = $_POST['id_category'];
         
 
-        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $imageByArticleId);
+        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $imageByArticleId, $updateCategory);
         if(is_string($updateArticle) ){
 
             $problem = $updateArticle;
