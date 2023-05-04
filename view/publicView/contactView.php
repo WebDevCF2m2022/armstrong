@@ -1,20 +1,38 @@
 <?php 
 
-$title = "conctact";
+$title = "contact";
 include_once '../view/include/header.php';
 
-echo 'contact';
 
 ?>
-<h1>Contactez nous :)</h1>
-<div>
-    <form name="contact" action=" " method="post">
-        <label for="Nom">Nom</label>
-        <input type="text" name="contactName" placeholder="nom d'utilisateur"required><br>
-        <label for="mail">Mail</label>
-        <input type="text" name="contactMail" placeholder="exemple@mail.com"required><br>
-        <label for="message">Message</label>
-        <textarea type="text" name="contactMessage" placeholder="entrez ici votre message"required></textarea><br>
-        <input type="submit" value="sendMessage">
-    </form>
-</div>
+
+
+<div class="box">
+        <form action="./" class="formbloc" method="POST">
+            <div class="formgroupe">
+                <label for="Nom" class="labelAll">Utilisateur</label>
+                <input type="text" id="utilisateur"class="inputUser" name="contactName" required
+                maxlength="16">
+            </div>
+
+            <div class="formgroupe">
+                <label for="mail" class="labelAll">Mail</label>
+                <input name="contactMail" type="exemple@mail.com" id="mdp"class="inputUser" required
+                maxlength="16">
+            </div>
+
+            <div class="formgroupe">
+                <label for="message" class="labelAll">Message</label>
+                <textarea name="contactMessage" id="message" required /></textarea>
+            </div>   
+
+
+            <div class="formgroupe">
+                <input type="submit" value="LOGIN" class="buttonsub inputUser" id="submit">
+                </div>
+        
+        </form>
+    </div>
+<?php
+    include_once '../view/include/footer.php';
+
