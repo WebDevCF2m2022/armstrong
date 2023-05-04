@@ -28,7 +28,7 @@ include_once '../view/include/header.php';
 
 
             <div class="formgroupe">
-                <input type="submit" value="LOGIN" class="buttonsub inputUser" id="submit">
+                <input type="submit" value="ENVOYER" class="buttonsub inputUser" id="submit">
                 </div>
         
         </form>
