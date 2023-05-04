@@ -2,7 +2,7 @@
 
 // De copier coller dans articleMod.php et à supprimer : 
 
-function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageUrl=[], $imageExist=[], $category= []){
+function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageUrl=[], $category= []){
 
         $db -> beginTransaction();
 
@@ -27,14 +27,14 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
                 $prepareImageUpdate->execute();
             
             }else{
-                $key = (int) $key+1;
-                $idString = $articleName . (string) $key ;
+                $keys = (int) $key+1;
+                $idString = $articleName . (string) $keys ;
                 $sqlImageInsert = "INSERT INTO `image`(`nom`, `url`, `position`,`credit_image_name`,`credit_image_link`, `article_id_article`) VALUES (:nom, :url, :position, 
             :wikiname, :wikilink, :id)";
                 $prepareImageInsert = $db->prepare($sqlImageInsert);
                 $prepareImageInsert->bindValue(":nom", $idString, PDO::PARAM_STR);
                 $prepareImageInsert->bindValue(":url", $value, PDO::PARAM_STR);
-                $prepareImageInsert->bindValue(":position", $key, PDO::PARAM_INT);
+                $prepareImageInsert->bindValue(":position", $keys, PDO::PARAM_INT);
                 $prepareImageInsert->bindValue(":wikiname", "wikiname",PDO::PARAM_STR);
                 $prepareImageInsert->bindValue(":wikilink", "wikilink",PDO::PARAM_STR);
                 $prepareImageInsert->bindValue(":id",$articleId, PDO::PARAM_INT);
