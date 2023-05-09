@@ -21,6 +21,7 @@ function getAllArticle(PDO $db): array{
     JOIN category_has_article h ON h.article_id_article = article.id_article 
     JOIN category c ON h.category_id_category = c.id_category 
     WHERE image.position = 1
+    GROUP BY article.id_article
     ORDER BY `id_article` ASC";
 
     try{
@@ -53,6 +54,7 @@ function getArticleByCategory(PDO $db, $id){
     JOIN image i ON i.article_id_article = a.id_article
     JOIN category_has_article h ON h.article_id_article = a.id_article 
     JOIN category c ON h.category_id_category = c.id_category 
+
     WHERE c.id_category = :id AND i.position = 1;";
 
     $prepare = $db->prepare($sql);
@@ -76,7 +78,8 @@ function getArticleById($db, $id){
     JOIN category c ON h.category_id_category = c.id_category 
     JOIN user u
     ON a.user_id_user = u.id_user
-    WHERE id_article = :id;";
+    WHERE id_article = :id
+    GROUP BY a.id_article;";
 
     $prepare = $db->prepare($sql);
     $prepare->bindValue(':id',$id,PDO::PARAM_INT);
@@ -152,6 +155,7 @@ function getArticleByUserId(PDO $db, $userId){
     JOIN category c ON h.category_id_category = c.id_category 
     JOIN user ON article.user_id_user = user.id_user 
     WHERE  user_id_user = $userId
+    GROUP BY article.id_article
     ORDER BY `id_article` ASC";
 
     try{
