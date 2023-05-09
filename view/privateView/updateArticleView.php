@@ -2,7 +2,7 @@
 
 $title = "mise à jour d'article";
 include_once '../view/include/header.php';
-var_dump($_POST);    
+        var_dump($_POST);    
 
 ?>
 
@@ -44,21 +44,51 @@ var_dump($_POST);
                 
             <?php endforeach; ?>   
 
-                <label for="image_add">Photos URL</label>              
+                <label for="image_add">Photo 1 URL : </label>              
                 <input type="text" value="<?=$imageByArticleId[0]['url']?>" name="image_update[]">
+                <label for="image_wiki_url">Wikipedia 1 URL :</label>
+                <input type="text" value="<?= $imageByArticleId[0]['credit_image_link']?>" name="image_wiki_url[]">
+                <label for="image_wiki_url">Wikipedia 1 source name :</label>
+                <input type="text" value="<?= $imageByArticleId[0]['credit_image_name']?>" name="image_wiki_name[]">
+                <br>
+                
             
                 <?php if(!empty($imageByArticleId[1])) :?>
+                    <label for="image_add">Photo 2 URL : </label>              
                     <input type="text" value="<?=$imageByArticleId[1]['url']?>" name="image_update[]">
-                <?php else: ?>
-                    <input type="text" value="" name="image_update[]">                    
+                    <label for="image_wiki_url">Wikipedia 2 URL :</label>
+                    <input type="text" value="<?= $imageByArticleId[1]['credit_image_link']?>" name="image_wiki_url[]">
+                    <label for="image_wiki_url">Wikipedia 2 source name :</label>
+                    <input type="text" value="<?= $imageByArticleId[1]['credit_image_name']?>" name="image_wiki_name[]">
+                <?php else: ?>                                     
+                    <label for="image_add">Photo 2 URL : </label>              
+                    <input type="text" value="" name="image_update[]">      
+                    <label for="image_wiki_url">Wikipedia 2 URL :</label>
+                    <input type="text" value="" name="image_wiki_url[]">
+                    <label for="image_wiki_url">Wikipedia 2 source name :</label>
+                    <input type="text" name="image_wiki_name[]">
+
+
                 <?php endif; ?>
+                <br>
                     
-                <?php if(!empty($imageByArticleId[2])) :?>                    
+                <?php if(!empty($imageByArticleId[2])) :?>  
+                    <label for="image_add">Photo 3 URL : </label>              
                     <input type="text" value="<?=$imageByArticleId[2]['url']?>" name="image_update[]">
+                    <label for="image_wiki_url">Wikipedia 3 URL :</label>    
+                    <input type="text" value="<?= $imageByArticleId[2]['credit_image_link']?>" name="image_wiki_url[]">
+                    <label for="image_wiki_url">Wikipedia 3 source name :</label>
+                    <input type="text" value="<?= $imageByArticleId[2]['credit_image_name']?>" name="image_wiki_name[]">
                 <?php else: ?>
+                    <label for="image_add">Photo 3 URL : </label>              
                     <input type="text" value="" name="image_update[]">
+                    <label for="image_wiki_url">Wikipedia 3 URL :</label>    
+                    <input type="text" value="" name="image_wiki_url[]">
+                    <label for="image_wiki_url">Wikipedia 3 source name :</label>
+                    <input type="text" name="image_wiki_name[]">
                 <?php endif; ?>
-                            
+                <br>    
+
                 <input type="submit">
                 <?php endforeach; ?>
         </form>

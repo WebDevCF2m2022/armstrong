@@ -51,11 +51,13 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         $updateSound = htmlspecialchars(strip_tags(trim($_POST['sound_article_update'])),ENT_QUOTES);
         $updateWiki = htmlspecialchars(strip_tags(trim($_POST['wiki_article_update'])),ENT_QUOTES);
         $updateImage = $_POST['image_update'];
+        $updateImageWikiUrl = $_POST['image_wiki_url'];
+        $updateImageWikiName =$_POST['image_wiki_name'];
         $updateCategory = $_POST['id_category'];
         
 
-        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $updateCategory);
-        if(is_string($updateArticle) ){
+        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $updateImageWikiUrl, $updateImageWikiName, $updateCategory);
+        if(is_string($updateArticle)){
 
             $problem = $updateArticle;
         }
@@ -82,5 +84,6 @@ else{
         $articleByUser = getArticleByUserId($db, $_SESSION['id_user']);
         include_once '../view/privateView/crudUser.php';
     }
+    return true;
 }
 
