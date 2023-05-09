@@ -19,7 +19,7 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
 
 
         foreach($imageUrl as $key=>$value){       
-            if(!empty($imageExist[$key]['url'])){                  
+            if(!empty($imageUrl[$key])){                  
                 $sqlImageUpdate = "UPDATE `image` SET `url`= :url WHERE `position`= $key+1 AND `article_id_article`=$articleId ";
                 $prepareImageUpdate = $db->prepare($sqlImageUpdate);
                 $prepareImageUpdate-> bindValue(":url", $value, PDO::PARAM_STR);
@@ -54,6 +54,8 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
                 $prepareCategory->bindValue(":article", $articleId, PDO::PARAM_INT);
                 $prepareCategory->execute();
             }
+        }
+        
             
 
 
@@ -66,4 +68,3 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
         }
 
     }
-}
