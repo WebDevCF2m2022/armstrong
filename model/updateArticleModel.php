@@ -2,8 +2,19 @@
 
 // De copier coller dans articleMod.php et à supprimer : 
 
-function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageId, $imageUrl=[], $imageWikiUrl=[] , $imageWikiName=[] , $category= []){
+function updateArticle(PDO $db, int $updateUser, int $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageId, $imageUrl=[], $imageWikiUrl=[] , $imageWikiName=[] , $category= []){
 
+    if($updateUser != 0){
+        try{
+            $permission = $db -> query("SELECT user_id_user FROM article WHERE user_id_user = $updateUser AND id_article = $articleId");
+            if($permission->rowCount()==0){
+                header("location: ./?deconnect");
+                exit;
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }
+    }
         $db -> beginTransaction();
 
         $sqlArticle = "UPDATE `article` SET `name_article`= :name, `min_description_article`= :min_desc ,`max_description_article`= :max_desc,`sound_article`= :sound, `wiki_article`=:wiki WHERE id_article = $articleId";
@@ -15,7 +26,7 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
         $prepareArticle -> bindValue(":max_desc", $articleMax, PDO::PARAM_STR);
         $prepareArticle -> bindValue(":sound", $articleSound, PDO::PARAM_STR);
         $prepareArticle -> bindValue(":wiki", $articleWiki, PDO::PARAM_STR);   
-        $prepareArticle  ->  execute();
+        $prepareArticle -> execute();
 
 
         foreach($imageUrl as $key=>$value){       
@@ -47,7 +58,7 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
 
         $db->exec("DELETE FROM `category_has_article` WHERE `article_id_article` = $articleId");
     
-        if(isset($category)){
+        if(!empty($category)){
             foreach($category as $item){
 
                 $sqlCategory = "INSERT INTO `category_has_article`(`category_id_category`, `article_id_article`) VALUES (:category, :article)";               
