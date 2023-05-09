@@ -78,7 +78,8 @@ function getArticleById($db, $id){
     JOIN category c ON h.category_id_category = c.id_category 
     JOIN user u
     ON a.user_id_user = u.id_user
-    WHERE id_article = :id;";
+    WHERE id_article = :id
+    GROUP BY a.id_article;";
 
     $prepare = $db->prepare($sql);
     $prepare->bindValue(':id',$id,PDO::PARAM_INT);

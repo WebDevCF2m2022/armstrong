@@ -1,6 +1,7 @@
 <?php 
 
 $allArticle = getAllArticle($db);
+$allCategory = getCategoryMenu($db);
 
 if(isset($_GET['deconnect'])){
     if(deconnect()){
@@ -72,7 +73,6 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
     }
 
     $articleById = getArticleById($db, $articleUpdateId);
-    $allCategory = getCategoryMenu($db);
     include_once '../view/privateView/updateArticleView.php';
 }
 
