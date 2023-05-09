@@ -2,7 +2,7 @@
 
 // De copier coller dans articleMod.php et à supprimer : 
 
-function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageUrl=[], $imageWikiUrl=[] , $imageWikiName=[] , $category= []){
+function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleMax, $articleSound, $articleWiki, $imageId, $imageUrl=[], $imageWikiUrl=[] , $imageWikiName=[] , $category= []){
 
         $db -> beginTransaction();
 
@@ -19,10 +19,12 @@ function updateArticle(PDO $db, $articleId, $articleName, $articleMin, $articleM
 
 
         foreach($imageUrl as $key=>$value){       
-            if(!empty($imageUrl[$key])){                  
-                $sqlImageUpdate = "UPDATE `image` SET `url`= :url WHERE `position`= $key+1 AND `article_id_article`=$articleId ";
+            if(isset($imageId[$key])){                  
+                $sqlImageUpdate = "UPDATE `image` SET `url`= :url,  `credit_image_name`= :wikiname, `credit_image_link`= :wikilink WHERE `position`= $key+1 AND `article_id_article`=$articleId ";
                 $prepareImageUpdate = $db -> prepare($sqlImageUpdate);
                 $prepareImageUpdate -> bindValue(":url", $value, PDO::PARAM_STR);
+                $prepareImageUpdate -> bindValue(":wikiname", $imageWikiName[$key],PDO::PARAM_STR);
+                $prepareImageUpdate -> bindValue(":wikilink", $imageWikiUrl[$key],PDO::PARAM_STR);
                 // $prepareImageUpdate->bindValue(":position", $key, PDO::PARAM_INT);
                 $prepareImageUpdate -> execute();
             

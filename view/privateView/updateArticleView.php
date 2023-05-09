@@ -2,7 +2,7 @@
 
 $title = "mise à jour d'article";
 include_once '../view/include/header.php';
-        var_dump($_POST);    
+        var_dump($imageByArticleId, $_POST);    
 
 ?>
 

@@ -56,7 +56,7 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         $updateCategory = $_POST['id_category'];
         
 
-        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $updateImage, $updateImageWikiUrl, $updateImageWikiName, $updateCategory);
+        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $imageByArticleId, $updateImage, $updateImageWikiUrl, $updateImageWikiName, $updateCategory);
         if(is_string($updateArticle)){
 
             $problem = $updateArticle;
