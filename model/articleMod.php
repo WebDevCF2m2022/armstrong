@@ -171,5 +171,62 @@ function getArticleByUserId(PDO $db, $userId){
     $bp = $query->fetchAll(PDO::FETCH_ASSOC);
     $query->closeCursor();
     return $bp;
-}   
+} 
+
+function postAdminInsert(PDO $db, int $idUser, string $postTitle, string $postMin,string $postMax,string $postSound, array $idCateg=[]):bool{
+    // début de transaction, arrête les autocommit, il faut appeler $db->commit() pour que toutes les requêtes soient effectivement validées
+    $db->beginTransaction();
+    // requêtes préparées contre les injections SQL (! au tableau $idCateg, on peut falsifier son contenu)
+    $preparePost = $db->prepare("INSERT INTO `article` (`name_article`,`min_description_article`,`max_description_article`,`sound_article`,`user_id_user`) VALUES (:name_article, :min_description_article, :max_description_article,:sound_article,:id_article)");
+
+    $preparePost->bindValue(":user_id_user", $idUser, PDO::PARAM_INT);
+    $preparePost->bindValue(":name_article", $postTitle, PDO::PARAM_STR);
+    $preparePost->bindValue(":min_description_article", $postMin, PDO::PARAM_STR);
+    $preparePost->bindValue(":max_description_article", $postMax, PDO::PARAM_STR);
+    $preparePost->bindValue(":sound_article", $postSound, PDO::PARAM_STR);
+
+    // insertion du Post
+
+    $preparePost->execute();
+    var_dump($preparePost);
+
+    // récupération immédiate de l'id inséré par la connexion de l'utilisateur actuel (table Post)
+    $postLastInsertId = $db->lastInsertId();
+
+
+    // pour insérer les catégories dans la table M2M, on ne garde que les valeurs qui doivent être des integer dans des champs category_has_post
+
+    // si le tableau n'est pas vide (catégories potentielles)
+if(!empty($idCateg)){
+
+    // requête préparée
+    $prepareCategory_has_post = $db->prepare("INSERT INTO `category_has_article` (`	category_id_category`,`article_id_article `) VALUES (:category_id_category, :article_id_article)");
+    // $valeur par défaut (sera remplacée en cas de validité du tableau)
+    $categId = 100;
+
+    // attribution des valeurs par référence, $value est donc une valeur par défaut qui ne sera pas utilisée
+    $prepareCategory_has_post->bindParam("article_id_article",$postLastInsertId,PDO::PARAM_INT);
+    $prepareCategory_has_post->bindParam("article_id_article",$categId,PDO::PARAM_INT);
+
+    foreach ($idCateg as $value) {
+        if(ctype_digit($value)){
+            $categId = (int) $value;
+            $prepareCategory_has_post->execute();
+        }
+    }
+
+}
+
+    try{
+        // on essaye d'envoyer toutes nos requêtes à la DB
+        $db->commit();
+        return true;
+    }catch(Exception $e){
+        // si une erreur dans au moins 1 requête
+        // on les annule toutes
+        $db->rollBack();
+        die($e->getMessage());
+    }
+
+}
 
