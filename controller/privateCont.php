@@ -57,18 +57,17 @@ elseif(isset($_GET['article_update']) && ctype_digit($_GET['article_update'])){
         $updateCategory = $_POST['id_category'];
         
 
-        $updateArticle = updateArticle($db, $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $imageByArticleId, $updateImage, $updateImageWikiUrl, $updateImageWikiName, $updateCategory);
+        $updateArticle = updateArticle($db, $_SESSION['permission_user'], $articleUpdateId, $updateTitle, $updateMin, $updateMax, $updateSound, $updateWiki, $imageByArticleId, $updateImage, $updateImageWikiUrl, $updateImageWikiName, $updateCategory);
         if(is_string($updateArticle)){
 
             $problem = $updateArticle;
         }
         if($updateArticle===true){
             
-            $problem = "L'article a bien été modifié";
-            
-            // <script>
-            // setTimeout(\"location.href = './';\", 2000);
-            // </script>";
+            $problem = "L'article a bien été modifié          
+            <script>
+            setTimeout(\"location.href = './';\", 2000);
+            </script>";
         }
     }
 
@@ -86,4 +85,3 @@ else{
     }
     return true;
 }
-

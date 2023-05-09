@@ -2,7 +2,7 @@
 
 $title = 'admin';
 include_once '../view/include/header.php';
-// var_dump($allArticle);
+var_dump($_SESSION);
 
 ?>
 <button><a href="?deconnect">deconnection</a></button>
