@@ -89,7 +89,4 @@ if(isset($_POST['contactName']) &&
     } else {
         echo "Echec de l'insertion";
     }
-} else {
-    echo "une variable n'est pas déclarée";
-}    
-                    
+}                  
