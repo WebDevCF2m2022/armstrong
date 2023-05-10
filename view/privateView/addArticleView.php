@@ -16,6 +16,7 @@ var_dump($_POST);
 <h2>Salut <?= $_SESSION['login_user']?></h2>
 
 <form action="" method="POST">
+    
     <input type="text" placeholder="nom de l'instrument" name="name_article_add">
     <textarea name="min_description_article" id="" cols="30" rows="10" placeholder="une courte introduction de votre article"></textarea>
     <textarea name="max_description_article" id="" cols="30" rows="10" placeholder="votre texte"></textarea>
