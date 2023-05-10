@@ -11,6 +11,7 @@ function sendMessage(PDO $db, string $contactName, string $contactMail, string $
     //$insertion->bindParam(2, $contactMail, PDO::PARAM_STR);
     //$insertion->bindParam(3, $contactMessage, PDO::PARAM_STR);
     $insertion = $db->prepare('INSERT INTO contact VALUES (NULL, :name_contact, :mail_contact, :message_contact)');
+    
     $insertion->bindValue(':name_contact', $_POST['contactName']);
     $insertion->bindValue(':mail_contact', $_POST['contactMail']);
     $insertion->bindValue(':message_contact', $_POST['contactMessage']);

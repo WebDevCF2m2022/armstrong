@@ -3,7 +3,8 @@
 $title = "contact";
 include_once '../view/include/header.php';
 
-
+  
+                    
 ?>
 
 
@@ -33,8 +34,8 @@ include_once '../view/include/header.php';
         
         </form>
     </div>-->
-<body class="formcontact">
-<form action="./" class="formbloc" method="POST">
+
+<form action="" class="formcontact" method="POST">
         
 <div class="container">
 
@@ -58,7 +59,6 @@ include_once '../view/include/header.php';
 </div>
 </form>
 
-</body>
 
 <?php
     include_once '../view/include/footer.php';
