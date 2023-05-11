@@ -3,7 +3,7 @@
 $title = "accueil";
 include_once '../view/include/header.php';
 
-var_dump($allArticle);
+// var_dump($allArticle);
 
 foreach($allArticle as $item):
     $image = explode(',', $item['url'])
