@@ -6,6 +6,10 @@ require_once '../model/connectionMod.php';
 require_once '../model/contactMod.php';
 require_once '../model/updateArticleModel.php';
 
+// l'auto load pour le mailer de symfony :
+require_once '../vendor/autoload.php';
+
+
 try {
 
     $db = new PDO(DB_TYPE.':host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME.';charset='.DB_CHARSET,DB_LOGIN,DB_PWD);
