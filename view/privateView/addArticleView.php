@@ -16,23 +16,27 @@ var_dump($_POST);
 <h2>Salut <?= $_SESSION['login_user']?></h2>
 
 <form action="" method="POST">
-    <input type="text" placeholder="nom de l'instrument" name="name_article_add">
-    <textarea name="min_description_article" id="" cols="30" rows="10" placeholder="une courte introduction de votre article"></textarea>
-    <textarea name="max_description_article" id="" cols="30" rows="10" placeholder="votre texte"></textarea>
-    <input type="text" placeholder="extrait sonore mp3 (url)" name="sound_article_add">
-    <input type="text" placeholder="URL photo 1 (obligatoire)" name="url_image_add_1">
-    <input type="text" placeholder="URL photo 2 (optionnelle)" name="url_image_add_2">
-    <input type="text" placeholder="URL photo 3 (optionnelle)" name="url_image_add_3">
-        <hr>
+    <input type="text" placeholder="nom de l'instrument" name="name_article">
+    <textarea name="min_description_article" id="" cols="30" rows="5" placeholder="une courte introduction de votre article"></textarea>
+    <textarea name="max_description_article" id="" cols="30" rows="20" placeholder="votre texte"></textarea>
+    <input type="text" placeholder="extrait sonore mp3 (url)" name="sound_article">
+    <input type="text" placeholder="URL photo 1 (obligatoire)" name="url_image_1">
+    <input type="text" placeholder="URL photo 2 (optionnelle)" name="url_image_2">
+    <input type="text" placeholder="URL photo 3 (optionnelle)" name="url_image_3">
+    <hr>
     <p>Choisissez une ou plusieurs catégorie(s)</p>
-    <input type="checkbox" name="perce_cylindrique" id="perce cylindrique">
-    <label for="perce cylindrique">perce cylindrique</label>
+    <?php
+    //modif
+    foreach ($allCateg as $item) :
+    ?>
+        <input type="checkbox" name="category_id_category[]" value="<?= $item['id_category'] ?>" id="<?= $item['name_category'] ?>">
+        <label for="<?= $item['name_category'] ?>"><?= $item['name_category'] ?></label>
         <hr>
-    <input type="checkbox" name="perce_conique" id="perce conique">
-    <label for="perce conique">perce conique</label>
-        <hr>
-    <input type="checkbox" name="perce_hybride" id="perce hybride">
-    <label for="perce hybride">perce cylindrique</label>
-    <input type="submit" value="envois">
+    <?php
+    endforeach;
+    ?>
+    <input type="submit" value="envoie" name="submit">
+
+    <!--//-->
 
 </form>

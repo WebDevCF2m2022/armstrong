@@ -82,13 +82,13 @@ if(isset($_POST['contactName']) &&
     isset($_POST['contactMail']) &&
     isset($_POST['contactMessage'])) {
         
+    $mailer = sendMail();
 
     
-    if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
-        echo "Insertion réussie";
-    } else {
-        echo "Echec de l'insertion";
-    }
-} else {
-    //echo "une variable n'est pas déclarée";
-}  
+    // if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
+    //     echo "Insertion réussie";
+    // } else {
+    //     echo "Echec de l'insertion";
+    // }
+}                  
+
