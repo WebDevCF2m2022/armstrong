@@ -1,4 +1,7 @@
 <?php
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
 
  function sendMessage(PDO $db, string $contactName, string $contactMail, string $contactMessage)
  {
@@ -18,9 +21,8 @@
      }
  }
 
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mime\Email;
+
+
 
 
 function sendMail()
