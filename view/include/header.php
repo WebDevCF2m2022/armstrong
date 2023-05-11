@@ -14,6 +14,7 @@ $articleMenu = getCategoryMenu($db);
     <title><?= $title ?></title>
     
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form-add">
     <nav>
         <a href="?p=homePage">Accueil</a>
         
@@ -32,3 +33,5 @@ $articleMenu = getCategoryMenu($db);
        
 
     </nav>
+
+
