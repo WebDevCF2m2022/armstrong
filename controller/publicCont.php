@@ -85,9 +85,9 @@ if(isset($_POST['contactName']) &&
     $mailer = sendMail();
 
     
-    // if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
-    //     echo "Insertion réussie";
-    // } else {
-    //     echo "Echec de l'insertion";
-    // }
+    if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
+         echo "Insertion réussie";
+     } else {
+         echo "Echec de l'insertion";
+     }
 }                  
