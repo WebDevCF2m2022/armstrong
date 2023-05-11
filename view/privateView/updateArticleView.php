@@ -2,7 +2,7 @@
 
 $title = "mise à jour d'article";
 include_once '../view/include/header.php';
-// var_dump($allCategory);    
+// var_dump($allCateg);    
 
 ?>
 
@@ -36,7 +36,7 @@ include_once '../view/include/header.php';
                 <?php  
 
                     $categoryId = (is_null($item['id_category']))? [] :explode(',', $item['id_category']);                  
-                    foreach($allCategory as $category):
+                    foreach($allCateg as $category):
                     $checked = (in_array($category['id_category'],$categoryId))? " checked " : "";
                 ?>
                 
