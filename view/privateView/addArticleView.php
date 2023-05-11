@@ -2,7 +2,7 @@
 
 $title = "ajout d'article";
 include_once '../view/include/header.php';
-var_dump($_POST);
+// var_dump($_POST);
 ?>
 
 <!-- <style> et <hr> à enlever quand il faudra styliser -->
