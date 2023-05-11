@@ -1,7 +1,7 @@
 <?php 
 
 $allArticle = getAllArticle($db);
-$allCategory = getCategoryMenu($db);
+$allCateg = getCategoryMenu($db);
 
 if(isset($_GET['deconnect'])){
     if(deconnect()){
@@ -84,37 +84,19 @@ else{
         include_once '../view/privateView/crudUser.php';
     }
     return true;
-}
-
-//insertion de post
+//mofif
 if (isset($_POST['submit'])) {
-    $postTitle = htmlspecialchars(strip_tags(trim($_POST['name_article'])),ENT_QUOTES);
-    $postMin = htmlspecialchars(strip_tags(trim($_POST['min_description_article'])),ENT_QUOTES);
-    $postMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article'])),ENT_QUOTES);
-    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])),ENT_QUOTES);
-    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])),ENT_QUOTES);
-    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])),ENT_QUOTES);
-
+    $postTitle = htmlspecialchars(strip_tags(trim($_POST['name_article'])), ENT_QUOTES);
+    $postMin = htmlspecialchars(strip_tags(trim($_POST['min_description_article'])), ENT_QUOTES);
+    $postMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article'])), ENT_QUOTES);
+    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])), ENT_QUOTES);
     $idCateg = (isset($_POST['category_id_category']) && is_array($_POST['category_id_category'])) ? $_POST['category_id_category'] : [];
 
-    if(!empty($postTitle) && !empty($postMin) && !empty($postMax) && !empty($postSound)) {
-        $requete = $db->prepare('INSERT INTO article (name_article, min_description_article, max_description_article, sound_article) VALUES (:name_article, :min_description_article, :max_description_article, :sound_article)');
-        $requete->bindValue(":name_article", $postTitle, PDO::PARAM_STR);
-        $requete->bindValue(":min_description_article", $postMin, PDO::PARAM_STR);
-        $requete->bindValue(":max_description_article", $postMax, PDO::PARAM_STR);
-        $requete->bindValue(":sound_article", $postSound, PDO::PARAM_STR);
-
-        $result = $requete->execute();
-
-        if(!$result) {
-            echo "un problème est survenu!";
-        } else {
-            echo "c'est inséré";
-       
-        }}
-        $categoryChoice = getCategoryMenu($db);
-
-  
-
-   
+    try {
+        postAdminInsert($db, $_SESSION['id_user'], $postTitle, $postMin, $postMax, $postSound, $idCateg);
+    } catch (Exception $e) {
+        die($e->getMessage());
     }
+}
+}
+

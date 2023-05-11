@@ -13,23 +13,27 @@ function getCategoryMenu(PDO $db): array {
 
 // ARTICLES :
 
-function getAllArticle(PDO $db): array{
-    $sql = "SELECT `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `wiki_article`, `nb_click`, `user_id_user`, `login_user`, `url`, `name_category`, `id_category`   
+function getAllArticle(PDO $db): array
+{
+    $sql = "SELECT 
+    `id_article`, `name_article`, `min_description_article`, `date_article`, `sound_article`, `wiki_article`, `nb_click`, `user_id_user`, `login_user`, 
+    # select imbriqué que sur les images (pas de double many vers l'article)
+    (SELECT GROUP_CONCAT(image.url)  FROM image WHERE image.article_id_article=id_article GROUP BY image.article_id_article) AS url, 
+    
+    GROUP_CONCAT(c.name_category SEPARATOR '|||') as name_category, GROUP_CONCAT(c.id_category) as id_category   
     FROM `article` 
     JOIN user ON article.user_id_user = user.id_user 
-    JOIN image ON image.article_id_article = article.id_article 
-    JOIN category_has_article h ON h.article_id_article = article.id_article 
-    JOIN category c ON h.category_id_category = c.id_category 
-    WHERE image.position = 1
-    GROUP BY article.id_article
-    ORDER BY `id_article` ASC";
+    LEFT JOIN category_has_article h ON h.article_id_article = article.id_article 
+    LEFT JOIN category c ON h.category_id_category = c.id_category 
+    GROUP BY `article`.`id_article`
+    ORDER BY `article`.`id_article` ASC";
 
-    try{
+    try {
         $query = $db->query($sql);
-    }catch(Exception $e){
+    } catch (Exception $e) {
         die($e->getMessage());
     }
-    
+
     $bp = $query->fetchAll(PDO::FETCH_ASSOC);
     $query->closeCursor();
     return $bp;
@@ -172,12 +176,13 @@ function getArticleByUserId(PDO $db, $userId){
     $query->closeCursor();
     return $bp;
 } 
-
-function postAdminInsert(PDO $db, int $idUser, string $postTitle, string $postMin,string $postMax,string $postSound, array $idCateg=[]):bool{
+//  Pouvoir insérer un article AVEC ses catégories, AVEC une transaction
+function postAdminInsert(PDO $db, int $idUser, string $postTitle, string $postMin, string $postMax, string $postSound, array $idCateg = []): bool
+{
     // début de transaction, arrête les autocommit, il faut appeler $db->commit() pour que toutes les requêtes soient effectivement validées
     $db->beginTransaction();
     // requêtes préparées contre les injections SQL (! au tableau $idCateg, on peut falsifier son contenu)
-    $preparePost = $db->prepare("INSERT INTO `article` (`name_article`,`min_description_article`,`max_description_article`,`sound_article`,`user_id_user`) VALUES (:name_article, :min_description_article, :max_description_article,:sound_article,:id_article)");
+    $preparePost = $db->prepare("INSERT INTO `article` (`name_article`,`min_description_article`,`max_description_article`,`sound_article`,`user_id_user`) VALUES (:name_article, :min_description_article, :max_description_article,:sound_article,:user_id_user)");
 
     $preparePost->bindValue(":user_id_user", $idUser, PDO::PARAM_INT);
     $preparePost->bindValue(":name_article", $postTitle, PDO::PARAM_STR);
@@ -188,7 +193,7 @@ function postAdminInsert(PDO $db, int $idUser, string $postTitle, string $postMi
     // insertion du Post
 
     $preparePost->execute();
-    var_dump($preparePost);
+
 
     // récupération immédiate de l'id inséré par la connexion de l'utilisateur actuel (table Post)
     $postLastInsertId = $db->lastInsertId();
@@ -197,36 +202,34 @@ function postAdminInsert(PDO $db, int $idUser, string $postTitle, string $postMi
     // pour insérer les catégories dans la table M2M, on ne garde que les valeurs qui doivent être des integer dans des champs category_has_post
 
     // si le tableau n'est pas vide (catégories potentielles)
-if(!empty($idCateg)){
+    if (!empty($idCateg)) {
 
-    // requête préparée
-    $prepareCategory_has_post = $db->prepare("INSERT INTO `category_has_article` (`	category_id_category`,`article_id_article `) VALUES (:category_id_category, :article_id_article)");
-    // $valeur par défaut (sera remplacée en cas de validité du tableau)
-    $categId = 100;
+        // requête préparée
+        $prepareCategory_has_post = $db->prepare("INSERT INTO `category_has_article` (`category_id_category`,`article_id_article`) VALUES (:category_id_category, :article_id_article)");
+        // $valeur par défaut (sera remplacée en cas de validité du tableau)
+        $categId = 100;
 
-    // attribution des valeurs par référence, $value est donc une valeur par défaut qui ne sera pas utilisée
-    $prepareCategory_has_post->bindParam("article_id_article",$postLastInsertId,PDO::PARAM_INT);
-    $prepareCategory_has_post->bindParam("article_id_article",$categId,PDO::PARAM_INT);
+        // attribution des valeurs par référence, $value est donc une valeur par défaut qui ne sera pas utilisée
+        $prepareCategory_has_post->bindParam("category_id_category", $categId, PDO::PARAM_INT);
+        $prepareCategory_has_post->bindParam("article_id_article", $postLastInsertId, PDO::PARAM_INT);
 
-    foreach ($idCateg as $value) {
-        if(ctype_digit($value)){
-            $categId = (int) $value;
-            $prepareCategory_has_post->execute();
+        foreach ($idCateg as $value) {
+            if (ctype_digit($value)) {
+                $categId = (int) $value;
+                $prepareCategory_has_post->execute();
+            }
         }
     }
 
-}
-
-    try{
+    try {
         // on essaye d'envoyer toutes nos requêtes à la DB
         $db->commit();
         return true;
-    }catch(Exception $e){
+    } catch (Exception $e) {
         // si une erreur dans au moins 1 requête
         // on les annule toutes
         $db->rollBack();
         die($e->getMessage());
     }
-
 }
 
