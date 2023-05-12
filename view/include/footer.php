@@ -1,5 +1,6 @@
+<link href="leStyle.css" rel="stylesheet" type="text/css" />
 <footer>
-    <h3>copyright &#169  <?= date('Y'); ?></h3>
+    <p> © copyright  <?= date('Y'); ?></p>
 </footer>
 
     <script src="js/js.js"></script>
