@@ -17,45 +17,52 @@ include_once '../view/include/header.php';
       <!--       <i class="fas fa-chevron-circle-left"></i> -->
     </div>
   </div>
-  <br>
-  <h2 class="titre1">Most Recent Articles</h2>
+  <h2 class="titre1">MOST RECENT ARTICLES</h2>
   <hr>
-  <?php
+  <br>
+
+<div class="gridCard" >
+<?php
 foreach($allArticle as $item):
     $image = explode(',', $item['url'])
 ?>
+<div class='card1'>
+  <a href="?articleId=<?=$item['id_article']?>"><img src="<?=$image[0]?>" alt="<?= $item['name_article']?>" width="300px"></a>
+  <h2 class="positionCard"><?= $item['name_article']; ?></h2>
+  <img src="asset/img/bouton-jouer.png" class="ctrlIcon" />
 
-<a href="?articleId=<?=$item['id_article']?>"><img src="<?=$image[0]?>" alt="<?= $item['name_article']?>" width="300px"></a>
-<h2 class="positionCard"><?= $item['name_article']; ?></h2>
-<img src="asset/img/bouton-jouer.png" onclick="playPause()" id="ctrlIcon" />
+  <!-- url a mettre dans la bonne balise -->
+  <div>
+    <audio controls src="<?= $item['sound_article'] ?>"></audio>
+  </div>
 
-<!-- url a mettre dans la bonne balise -->
-<p><?= $item['sound_article']; ?></p> 
-<div>
-      <audio controls id="song">
-        <source src="<?= $item['sound_article'];?>" type="audio">
-      </audio>
-    </div>
-    <script>
-      let song = document.getElementById("song");
-      let ctrlIcon = document.getElementById("ctrlIcon");
+  <p class="positionCard"><?= $item['min_description_article']; ?></p>
+</div>
+</div>
+  <!-- <div class="card1"> -->
 
-      function playPause() {
-        if (song.paused) {
-          song.play();
-          ctrlIcon.src = "asset/img/bouton-pause.png";
-        } else {
-          song.pause();
-          ctrlIcon.src = "asset/img/bouton-jouer.png";
-        }
-      }
-    </script>
-
-<p class="positionCard"><?= $item['min_description_article']; ?></p>
-<p><?= $item['date_article']; ?></p> <p><?= $item['login_user']; ?></p>
-<hr>
 <?php endforeach;?>
 
 
+<script>
+  let ctrlIcons = document.querySelectorAll('.ctrlIcon');
+
+  for (let ctrlIcon of ctrlIcons) {
+    ctrlIcon.addEventListener('click', playPause);
+  }
+
+  function playPause() {
+    console.log(this);
+    let audioElement = this.parentElement.querySelector('audio');
+
+    if (audioElement.paused) {
+      audioElement.play();
+      this.src = "asset/img/bouton-pause.png";
+    } else {
+      audioElement.pause();
+      this.src = "asset/img/bouton-jouer.png";
+    }
+  }
+</script>
 
 <?php include_once "../view/include/footer.php";?>
