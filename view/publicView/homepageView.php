@@ -27,7 +27,7 @@ foreach($allArticle as $item):
 
 <a href="?articleId=<?=$item['id_article']?>"><img src="<?=$image[0]?>" alt="<?= $item['name_article']?>" width="300px"></a>
 <h2 class="positionCard"><?= $item['name_article']; ?></h2>
-<img src="media/bouton-jouer.png" onclick="playPause()" id="ctrlIcon" />
+<img src="asset/img/bouton-jouer.png" onclick="playPause()" id="ctrlIcon" />
 
 <!-- url a mettre dans la bonne balise -->
 <p><?= $item['sound_article']; ?></p> 
@@ -43,10 +43,10 @@ foreach($allArticle as $item):
       function playPause() {
         if (song.paused) {
           song.play();
-          ctrlIcon.src = "media/bouton-pause.png";
+          ctrlIcon.src = "asset/img/bouton-pause.png";
         } else {
           song.pause();
-          ctrlIcon.src = "media/bouton-jouer.png";
+          ctrlIcon.src = "asset/img/bouton-jouer.png";
         }
       }
     </script>
