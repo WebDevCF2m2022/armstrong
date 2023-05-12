@@ -20,11 +20,9 @@ include_once '../view/include/header.php';
             <h2 class="contactezns">Contactez-nous</h2>
 
 
-            <input type="text" id="utilisateur"class="field" name="contactName" placeholder= "nom" required
-                maxlength="16">
+            <input type="text" id="utilisateur"class="field" name="contactName" placeholder= "nom" required>
             
-            <input name="contactMail" type="exemple@mail.com" id="mdp"class="field" placeholder= "email" required
-                maxlength="30">
+            <input name="contactMail" type="exemple@mail.com" id="mdp"class="field" placeholder= "email" required>
             
             <textarea name="contactMessage" id="message" class="field area" placeholder= "message" required /></textarea>   
             
