@@ -9,6 +9,21 @@ if(isset($_GET['deconnect'])){
     }       
 }
 
+//mofif
+if (isset($_POST['submit'])) {
+    $postTitle = htmlspecialchars(strip_tags(trim($_POST['name_article'])), ENT_QUOTES);
+    $postMin = htmlspecialchars(strip_tags(trim($_POST['min_description_article'])), ENT_QUOTES);
+    $postMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article'])), ENT_QUOTES);
+    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])), ENT_QUOTES);
+    $idCateg = (isset($_POST['category_id_category']) && is_array($_POST['category_id_category'])) ? $_POST['category_id_category'] : [];
+
+    try {
+        postAdminInsert($db, $_SESSION['id_user'], $postTitle, $postMin, $postMax, $postSound, $idCateg);
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
+}
+
 if(isset($_GET['p'])){
     if(isset($_GET['article_delete'])&&ctype_digit($_GET['article_delete'])){
         
@@ -83,20 +98,7 @@ else{
         $articleByUser = getArticleByUserId($db, $_SESSION['id_user']);
         include_once '../view/privateView/crudUser.php';
     }
-    return true;
-//mofif
-if (isset($_POST['submit'])) {
-    $postTitle = htmlspecialchars(strip_tags(trim($_POST['name_article'])), ENT_QUOTES);
-    $postMin = htmlspecialchars(strip_tags(trim($_POST['min_description_article'])), ENT_QUOTES);
-    $postMax = htmlspecialchars(strip_tags(trim($_POST['max_description_article'])), ENT_QUOTES);
-    $postSound = htmlspecialchars(strip_tags(trim($_POST['sound_article'])), ENT_QUOTES);
-    $idCateg = (isset($_POST['category_id_category']) && is_array($_POST['category_id_category'])) ? $_POST['category_id_category'] : [];
+   // return true;
 
-    try {
-        postAdminInsert($db, $_SESSION['id_user'], $postTitle, $postMin, $postMax, $postSound, $idCateg);
-    } catch (Exception $e) {
-        die($e->getMessage());
-    }
-}
 }
 

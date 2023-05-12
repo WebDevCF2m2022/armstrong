@@ -17,9 +17,17 @@ $articleMenu = getCategoryMenu($db);
     <!-- On mettra le title dans une variable $title a renseigner en haut de chaque vue ex: $title = accueil  -->
     <title>C•Ͻ - <?= $title ?></title>
     
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form-insert-update">
+    <link href="css/leStyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/crud.css" rel="stylesheet" type="text/css" />
+
+
   
     <header class="main-head">
-  <img src="asset/img/logo.jpg" alt="" id="logo">
+      <img src="asset/img/logo.jpg" alt="" id="logo">
+
     <nav>
         <a class="menu" href="?p=homePage">Accueil</a>
         
@@ -38,3 +46,5 @@ $articleMenu = getCategoryMenu($db);
        
 
     </nav>
+
+
