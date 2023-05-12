@@ -63,7 +63,7 @@
  
 
 .contactezns:after {
-    content: '';
+    /* content: ''; */
     position:absolute;
     left: 50%;
     bottom: 0;
@@ -71,7 +71,7 @@
     height: 4px;
     width: 50px;
     border-radius: 2px;
-    background-color: #2ecc71;
+    background-color: #ef8d26;
 }
 
 .field{
@@ -102,7 +102,7 @@
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1.1rem;
-    background-color: #2ecc71;
+    background-color: #ef8d26;
     cursor: pointer;
     outline: none;
     border: none;
@@ -111,7 +111,7 @@
 }
 
 .btn:hover{
-    background-color: #27ae60;
+    background-color: #cc7519;
 }
 
 
