@@ -7,43 +7,43 @@ if(isset($_GET['p'])){
             $allArticle = getAllArticle($db);
             include_once '../view/publicView/homepageView.php';
             break;
-        case 'contact':
+            case 'contact':
             include_once '../view/publicView/contactView.php';
             break;
         case 'connect':
             include_once '../view/publicView/connectView.php';
             break;  
-        case 'sub':
+            case 'sub':
                 include_once '../view/publicView/inscriptionView.php';
                 break;
-        default: 
-            $allArticle = getAllArticle($db);
-            include_once '../view/publicView/homepageView.php';
-            break;
-    }      
-
-}
-
-// affiche les categories par id et les articles par catégorie
-elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){   
+                default: 
+                $allArticle = getAllArticle($db);
+                include_once '../view/publicView/homepageView.php';
+                break;
+            }      
+            
+        }
+        
+        // affiche les categories par id et les articles par catégorie
+        elseif(isset($_GET['categoryId'])&&ctype_digit($_GET['categoryId'])){   
     
-    $categoryId = (int) $_GET['categoryId'];
+            $categoryId = (int) $_GET['categoryId'];
 
     $categoryById = getCategoryById($db,$categoryId);
     
-
+    
     if(!$categoryById){
         // création de l'erreur pour la 404
         $error = "Cet catégorie n'existe plus";
         // appel de la vue 404
         include_once "../view/404.php";
-
+        
     }else{
-
+        
         $articlesByCategory = getArticleByCategory($db, $categoryId);
         $nbPost = count($articlesByCategory);
         include_once("../view/publicView/categoryView.php");      
-
+        
     }
 }
 
@@ -68,29 +68,32 @@ if(isset($_POST['login'],$_POST['pwd'])){
         echo $message;                   
     }else{
         header("Location: ./");
-      
+        
     }
 }            
-                    
-elseif(isset($_POST['password']) && $_POST['password'] == $_POST['confirmPassword']) {
+
+if(isset($_POST['password']) && $_POST['password'] == $_POST['confirmPassword']) {
     $inscrit = inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email']);
     if(is_string($inscrit)){
-            $reponse = $inscrit;
-        }else{
-            $reponse = "oui";
+        $reponse = $inscrit;
+    if($inscrit === true){
+        $reponse = "L'article a bien été modifié          
+            <script>
+            setTimeout(\"location.href = './';\", 2000);
+            </script>";
+        }
     }
 }
 
 
-
 if(isset($_POST['contactName']) &&
-    isset($_POST['contactMail']) &&
-    isset($_POST['contactMessage'])) {
-        
-    $mailer = sendMail();
-
+isset($_POST['contactMail']) &&
+isset($_POST['contactMessage'])) {
     
-
+    $mailer = sendMail();
+    
+    
+    
     if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
         $envoi = "Insertion réussie";
     } else {

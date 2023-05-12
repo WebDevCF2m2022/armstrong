@@ -70,6 +70,7 @@ function inscriptionUser(PDO $db, string $pseudo, string $mdp, string $email)
     $insertInscrip->bindParam(3, $email, PDO::PARAM_STR);
     try {
         $insertInscrip->execute();
+        return true;
     } catch (Exception $e) {
         return $e->getMessage();
     }
