@@ -14,7 +14,7 @@ $articleMenu = getCategoryMenu($db);
     <title><?= $title ?></title>
     
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form-add">
+    <link rel="stylesheet" href="css/form-insert-update">
     <nav>
         <a href="?p=homePage">Accueil</a>
         

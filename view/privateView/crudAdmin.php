@@ -16,7 +16,6 @@ include_once '../view/include/header.php';
         <th>description</th>
         <th>date</th>
         <th>auteur</th>
-        <th>url</th>
         <th>catégorie</th>
         <th>update</th>
         <th>delete</th>
