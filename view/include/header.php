@@ -15,7 +15,7 @@ $articleMenu = getCategoryMenu($db);
     <link href="css/leStyle.css" rel="stylesheet" type="text/css" />
 
     <!-- On mettra le title dans une variable $title a renseigner en haut de chaque vue ex: $title = accueil  -->
-    <title>C•Ͻ -<?= $title ?></title>
+    <title>C•Ͻ - <?= $title ?></title>
     
 
     <link rel="stylesheet" href="css/style.css">
@@ -29,20 +29,20 @@ $articleMenu = getCategoryMenu($db);
       <img src="asset/img/logo.jpg" alt="" id="logo">
 
     <nav>
-        <a href="?p=homePage">Accueil</a>
+        <a class="menu" href="?p=homePage">Accueil</a>
         
         <!-- lien pour les category : -->
         <?php
         foreach($articleMenu as $item) : 
         ?>
 
-        <a href="?categoryId=<?=$item['id_category']?>"><?=$item['name_category']?></a>
+        <a class="menu" href="?categoryId=<?=$item['id_category']?>"><?=$item['name_category']?></a>
 
         <?php
         endforeach;
         ?>
-        <a href="?p=contact">Contact</a>
-        <a href="?p=connect">Connexion</a>
+        <a class="menu" href="?p=contact">Contact</a>
+        <a class="menu" href="?p=connect">Connexion</a>
        
 
     </nav>
