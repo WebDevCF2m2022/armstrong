@@ -1,30 +1,40 @@
-/* html {
+@font-face {
+  font-family: 'primetimeregular';
+  src: url('../asset/font/primetime-webfont.woff') format('woff2'),
+       url('../asset/font/primetime-webfont.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
     height: 100%;
     width: 100%;
+
   }
   .main-head{
     background-color: 1px solid rgba(255, 255, 255, 3);
     color: black;
   }
-  a{
+ a.menu{
     color: black;
     text-decoration: none;
-    font-weight: 1000;
-    justify-content: space-between;
-  }
-  a:hover{
     font-weight: 700;
-    text-decoration: underline 2.5px;
+    font-size: large;
+    
+  }
+  a.menu:hover{
+    font-weight: 1000;
+    text-decoration: underline 2px;
   }
   nav{
     width: 50%;
-    margin-left: 56%;
+    margin-left: 49%;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
   }
   nav ul{
-    display: flex;
     flex: 1 1 40rem;
-    justify-content: space-between;
     align-items: center;
     list-style: none;
   }
@@ -89,26 +99,30 @@
   
   
   audio {
-  display: none;
+    display: none;
   }
   
-  h2 .titre1{
+.titre1 {
     margin-top: 20px;
     text-align: center;
+    font-family: 'primetimeregular';
+  
   }
   
-  img {
+  .card1 img {
     width: 280px;
     height: 200px;
     padding-left: 0;
   }
   
-  h2 {
+   h2.positionCard {
     color: black;
     background-color: white;
+    border: 0.5px solid black;
     text-align: center;
     position: relative;
-    top: -60px;
+    top: -30px;
+    font-family: 'primetimeregular';
     
   }
   
@@ -124,16 +138,22 @@
     height: 400px;
     width: 280px;
     border: 1px solid black;
+    
+  }
+
+  .gridCard{
+    display: inline-block;
+    width: 100%;
   }
   
-  p {
+  p.positionCard {
     color: white;
     text-align: justify;
     padding-left: 8px;
     padding-right: 8px;
-    font-size: smaller;
-     position: relative;
-    top: -60px;
+    font-size: 17px;
+    position: relative;
+    top: -50px;
   }
   
   .button {
@@ -141,13 +161,16 @@
     width: 15px;
   }
   
-  #ctrlIcon {
+  img.ctrlIcon {
     height: 30px;
     width: auto;
     z-index: 1000;
     position: relative;
-    top: -50px;
+    top: -120px;
     left: 230px;
+    border: solid 1.5px white;
+    border-radius: 30px;
+    background-color: white;
   }
   footer {
     width: 100%;
@@ -161,5 +184,9 @@
   footer p {
     color: #fff;
     text-align: center;
-    margin-top: 150px;
-  } */
+    margin-top: 20px;
+  }
+  hr{
+    width: 400px;
+  }
+
