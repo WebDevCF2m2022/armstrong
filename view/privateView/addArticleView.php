@@ -7,7 +7,7 @@ include_once '../view/include/header.php';
 
 <div class="container-add">
     <div class="champs">
-    <h2>Salut <?= $_SESSION['login_user']?> ! </h2>
+    <h2 id="salut">Salut <?= $_SESSION['login_user']?> ! </h2>
     
     <form action="" method="POST">
         <input class="field" type="text" placeholder="nom de l'instrument" name="name_article">
