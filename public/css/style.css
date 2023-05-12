@@ -126,3 +126,7 @@
         height: 200px;
     }
 }
+
+#salut {
+    text-transform: capitalize;
+}
