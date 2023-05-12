@@ -102,13 +102,14 @@ html {
     display: none;
   }
   
-  h2 {
+.titre1 {
     margin-top: 20px;
     text-align: center;
     font-family: 'primetimeregular';
+  
   }
   
-  img {
+  .card1 img {
     width: 280px;
     height: 200px;
     padding-left: 0;
