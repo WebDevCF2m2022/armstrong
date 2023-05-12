@@ -71,7 +71,7 @@ function inscriptionUser(PDO $db, string $pseudo, string $mdp, string $email)
     try {
         $insertInscrip->execute();
     } catch (Exception $e) {
-
         return $e->getMessage();
     }
+    
 }
