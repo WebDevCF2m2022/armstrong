@@ -19,9 +19,9 @@ $articleMenu = getCategoryMenu($db);
     
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form-insert-update">
-    <link href="css/leStyle.css" rel="stylesheet" type="text/css" />
-    <link href="css/crud.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/form-insert-update-sub.css">
+    <link rel="stylesheet" href="css/leStyle.css"  type="text/css" />
+    <link rel="stylesheet" href="css/crud.css"  type="text/css" />
 
 
   

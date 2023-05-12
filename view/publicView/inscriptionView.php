@@ -2,32 +2,24 @@
 
 $title = 'inscription';
 include_once '../view/include/header.php';
-
+var_dump($reponse, $inscrit);
 ?>
 
-<div class="container">
-    <form action="" class="col-md-6" method="post">
-        <h1>créer un compte</h1>
-        <div class="form-group">
-            <input type="text" name="pseudo" id="" class="form-control" placeholder="Entrer votre pseudo">
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" id="" class="form-control" placeholder="Entrer votre password">
-        </div>
-        <div class="form-group">
-            <input type="password" name="confirmPassword" id="" class="form-control" placeholder="Veuillez confirmer votre password">
-            <div class="form-group">
-                <input type="email" name="email" id="" class="form-control" placeholder="Veuillez confirmer votre mail">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" name="role" id="" class="form-check-input">
-                <label for="role">Je souhaite devenir membre</label>
-            </div>
-            <div class="form-group">
-                <a href="?p=connect" class="btn btn-warning">connexion</a>
-                <input type="submit" value="créer mon compte" name="envoi" class="btn btn-primary">
-            </div>
+
+<div class="container-sub">
+    <form action="" method="post">
+        <h2>créer un compte</h2>       
+        <input class="field" type="text" name="pseudo" id="" placeholder="Entrer votre pseudo">        
+        <input class="field" type="password" name="password" id="" placeholder="Entrer votre password">               
+        <input class="field" type="password" name="confirmPassword" id="" placeholder="Veuillez confirmer votre password">            
+        <input class="field" type="email" name="email" id="" placeholder="Veuillez confirmer votre mail">
+        <input type="submit" value="inscription" name="envoi" class="btn">      
     </form>
+    <?php 
+    if(isset($reponse)): 
+    ?>
+    <h3><?= $reponse ?></h3>
+    <?php endif ?>
 </div>
 <?php
 include_once '../view/include/footer.php';
