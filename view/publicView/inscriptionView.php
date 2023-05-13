@@ -2,7 +2,7 @@
 
 $title = 'inscription';
 include_once '../view/include/header.php';
-var_dump($reponse, $inscrit);
+// var_dump($reponse, $inscrit);
 ?>
 
 
