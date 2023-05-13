@@ -1,4 +1,4 @@
-.container-add{
+.container-add, .container-sub {
     padding-top: 2rem;
     width: 70%;
     margin: auto;
@@ -9,7 +9,7 @@
     
 }
 
-.champs input, .container-add textarea {
+.champs input, .container-add textarea, .container-sub input {
     width: 100%;
     margin: 1rem 0;
     padding: 0.5rem;
@@ -20,9 +20,10 @@
     margin-bottom: 1rem;
 }
 
-.container-add h2 {
+.champs h2, .container-add h2, .container-sub h2 {
     padding: 0.5rem 0;
     font-weight: bold;
+    text-align: center;
 }
 
 .checkbox input {
@@ -42,12 +43,10 @@
     background-color: rgba(230, 230, 230, 0.6);
 }
 
-.champs h2 {
-    text-align: center;
-}
 
 @media (max-width:1000px) {
-    .container-add{
+
+    .container-add, .container-sub {
         width: 90%;
     }
 }

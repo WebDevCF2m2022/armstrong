@@ -7,10 +7,12 @@ include_once '../view/include/header.php';
 ?>
 <button><a href="?deconnect">deconnection</a></button>
 <button><a href="?p=article_add">ajoutez article</a></button>
-    <?php if(empty($articleByUser)):?>
-        <h2>y'a pas d'articles frer</h2>
-    <?php else: ?>
 <div class="container-crud">
+    <?php if(empty($articleByUser)):?>
+    <div class="padarticle">
+        <h2 style="text-transform: capitalize;">Bonjour <?= $_SESSION['login_user']?>!</h2><h2> Il n'y a pas d'article à votre nom présentement !</h2>
+    </div>
+    <?php else: ?>
     <table>
         <tr>
             <th>nom d'article</th>
@@ -18,8 +20,8 @@ include_once '../view/include/header.php';
             <th>date</th>
             <th>auteur</th>
             <th>catégorie</th>
-            <th>update</th>
-            <th>delete</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
 

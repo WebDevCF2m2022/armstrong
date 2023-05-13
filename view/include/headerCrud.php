@@ -8,7 +8,7 @@
     <link href="css/leStyle.css" rel="stylesheet" type="text/css" />
     <title></title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form-insert-update">
+    <link rel="stylesheet" href="css/form-insert-update-sub.css">
     <link href="css/leStyle.css" rel="stylesheet" type="text/css" />
     <link href="css/crud.css" rel="stylesheet" type="text/css" />
 </head>
