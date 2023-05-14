@@ -22,7 +22,7 @@ $articleMenu = getCategoryMenu($db);
     <link rel="stylesheet" href="css/form-insert-update-sub.css">
     <link rel="stylesheet" href="css/leStyle.css"  type="text/css" />
     <link rel="stylesheet" href="css/crud.css"  type="text/css" />
-
+    <link rel="stylesheet" href="css/styleArt.css"  type="text/css" />
 
   
     <header class="main-head">
