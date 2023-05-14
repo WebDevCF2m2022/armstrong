@@ -17,7 +17,7 @@ include_once '../view/include/header.php';
 <div class="container-add">
     <div class="champs">
 
-    <h2>salut <?= $_SESSION['login_user']?> ! </h2>
+    <h2 style="text-transform: capitalize;">Bonjour <?= $_SESSION['login_user']?> ! </h2>
 
     <?php if(isset($problem)): ?>
         <h2><?= $problem ?></h2>

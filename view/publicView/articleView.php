@@ -3,7 +3,7 @@
 $title = "articles";
 include_once '../view/include/header.php';
 
-// var_dump($articleById,$imageByArticleID);
+// var_dump($articleById);  
 ?>
 
 <?php foreach($articleById as $article): 

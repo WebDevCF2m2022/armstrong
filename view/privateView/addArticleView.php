@@ -2,7 +2,7 @@
 
 $title = "ajout d'article";
 include_once '../view/include/headerCrud.php';
-// var_dump($_POST);
+var_dump($_POST, $problem);
 ?>
 <button><a href="?deconnect">deconnection</a></button>
 <button > <a href="?deconnect"> Accueil<i class='fas fa-home'></i></a></button>
@@ -10,6 +10,10 @@ include_once '../view/include/headerCrud.php';
 <div class="container-add">
     <div class="champs">
     <h2 id="salut">Salut <?= $_SESSION['login_user']?> ! </h2>
+
+    <?php if(isset($problem)): ?>
+        <h2><?= $problem ?></h2>
+        <?php endif; ?> 
     
     <form action="" method="POST">
         <input class="field" type="text" placeholder="nom de l'instrument" name="name_article">
