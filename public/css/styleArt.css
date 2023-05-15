@@ -1,0 +1,60 @@
+.contitreart{
+    height: 250px;
+    display: flex;
+    font-size: 3.5em;
+    background: no-repeat center  url(../asset/img/BannierArticle.jpg);
+}
+
+.titreart {
+    margin: auto;
+}
+
+.conteneurart {
+    display: flex;
+    flex-direction: column;
+}
+
+.contimgart1 {
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.imgart1 {
+    width: 100%;
+    margin: auto;
+}
+
+.conteneurpara {
+    width: 75%;
+    font-size: 2em;
+    margin: 100px auto;
+    border: 5px solid black;
+    border-radius: 8px;
+    padding: 35px;
+}
+
+.contimgart {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.imgart {
+    width: 550px;
+}
+
+@media screen and (max-width:1938px){
+    .contimgart {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgart {
+        width: 550px;
+        margin: auto;
+    }
+  }
