@@ -14,7 +14,10 @@ include_once '../view/include/header.php';
     </div>
     <?php else: ?>
     <table>
-        <tr>
+        <?php if(isset($problem)): ?>
+            <h2><?= $problem ?></h2>
+            <?php endif; ?> 
+            <tr>
             <th>nom d'article</th>
             <th>description</th>
             <th>date</th>

@@ -12,10 +12,13 @@ include_once '../view/include/headerCrud.php';
 <div class="container-crud">
     <?php if(empty($allArticle)):?>
     <div class="padarticle">   
-        <h2>Bonjour <?= $_SESSION['login_user']?>! Il n'y a pas d'article à votre nom présentement !</h2>
+        <h2 style="text-transform: capitalize;">Bonjour <?= $_SESSION['login_user']?>! Il n'y a pas d'article à votre nom présentement !</h2>
     </div>
     <?php else: ?>
-    <table>
+        <table>
+        <?php if(isset($problem)): ?>
+            <h2><?= $problem ?></h2>
+            <?php endif; ?> 
         <tr>
             <th>nom d'article</th>
             <th>description</th>
