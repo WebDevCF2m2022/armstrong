@@ -18,7 +18,7 @@ include_once '../view/include/header.php';
     </div>
   </div>
   <h2 class="titre1">MOST RECENT ARTICLES</h2>
-  <hr>
+  <hr class="ligne1">
   <br>
 
 <div class="gridCard" >
@@ -38,10 +38,10 @@ foreach($allArticle as $item):
 
   <p class="positionCard"><?= $item['min_description_article']; ?></p>
 </div>
-</div>
   <!-- <div class="card1"> -->
 
 <?php endforeach;?>
+</div>
 
 
 <script>

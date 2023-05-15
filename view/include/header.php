@@ -56,4 +56,5 @@ $articleMenu = getCategoryMenu($db);
 
     </nav>
 
+    </header>
 

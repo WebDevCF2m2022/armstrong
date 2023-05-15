@@ -11,6 +11,10 @@ html {
     width: 100%;
 
   }
+  body{
+    margin: 0;
+    padding: 0;
+  }
   .main-head{
     background-color: 1px solid rgba(255, 255, 255, 3);
     color: black;
@@ -65,18 +69,20 @@ html {
   }
   
   .card1 {
-  width: 300px;
   margin: 20px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
+  object-fit: cover;
+  background-color: black;
+  height: 400px;
+  width: 280px;
+  border: 1px solid black;
   }
-  
-  .card1 img {
+  /*.card1 img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  }
+  }*/
   
   .card1 h3 {
   margin: 10px;
@@ -133,17 +139,15 @@ html {
     width: 280px;
   }
   
-  .card1 {
-    background-color: black;
-    height: 400px;
-    width: 280px;
-    border: 1px solid black;
-    
-  }
 
   .gridCard{
-    display: inline-block;
-    width: 100%;
+    /*display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;*/
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-items: center;
+    align-content: center;
   }
   
   p.positionCard {
@@ -180,13 +184,26 @@ html {
     justify-content: center;
     align-items: center;
     margin-left: 0;
+    margin-top: auto;
   }
   footer p {
     color: #fff;
     text-align: center;
     margin-top: 20px;
   }
+
   hr{
     width: 400px;
+  }
+
+
+  p.gategDesc {
+    margin-left: 30px;
+  }
+
+   h2.gategName{
+    font-family: 'primetimeregular';
+    margin-left: 30px;
+    margin-top: 50px;
   }
 
