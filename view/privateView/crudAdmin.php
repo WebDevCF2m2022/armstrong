@@ -1,13 +1,11 @@
 <?php
 
 $title = 'admin';
-include_once '../view/include/headerCrud.php';
+include_once '../view/include/header.php';
 // var_dump()
 
 ?>
-<button><a href="?deconnect">deconnection</a></button>
-<button><a href="?p=article_add">ajoutez article</a></button>
-<button > <a href="./"> Accueil<i class='fas fa-home'></i></a></button>
+
 
 <div class="container-crud">
     <?php if(empty($allArticle)):?>

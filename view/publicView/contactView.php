@@ -2,9 +2,8 @@
 
 $title = "contact";
 include_once '../view/include/header.php';
-var_dump($problem);
-  
-                    
+// var_dump($problem);
+    
 ?>
 
 <form action="" class="formcontact" method="POST">

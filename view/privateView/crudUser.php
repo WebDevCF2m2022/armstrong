@@ -5,8 +5,6 @@ include_once '../view/include/header.php';
 // var_dump($_SESSION['id_user'],$articleByUser);
 
 ?>
-<button><a href="?deconnect">deconnection</a></button>
-<button><a href="?p=article_add">ajoutez article</a></button>
 <div class="container-crud">
     <?php if(empty($articleByUser)):?>
     <div class="padarticle">

@@ -1,7 +1,7 @@
 <?php
 
 $articleMenu = getCategoryMenu($db);
-
+// var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,27 +23,36 @@ $articleMenu = getCategoryMenu($db);
     <link rel="stylesheet" href="css/leStyle.css"  type="text/css" />
     <link rel="stylesheet" href="css/crud.css"  type="text/css" />
     <link rel="stylesheet" href="css/styleArt.css"  type="text/css" />
+    <link rel="stylesheet" href="css/navCrud.css" type="text/css">
 
   
     <header class="main-head">
       <img src="asset/img/logo.jpg" alt="" id="logo">
 
     <nav>
-        <a class="menu" href="?p=homePage">Accueil</a>
-        
-        <!-- lien pour les category : -->
-        <?php
-        foreach($articleMenu as $item) : 
-        ?>
-
-        <a class="menu" href="?categoryId=<?=$item['id_category']?>"><?=$item['name_category']?></a>
-
-        <?php
-        endforeach;
-        ?>
-        <a class="menu" href="?p=contact">Contact</a>
-        <a class="menu" href="?p=connect">Connexion</a>
-       
+        <?php if(empty($_SESSION)): ?>
+            <a class="menu" href="?p=homePage">Accueil</a>
+            
+            <!-- lien pour les category : -->
+            <?php
+            foreach($articleMenu as $item) : 
+            ?>
+    
+            <a class="menu" href="?categoryId=<?=$item['id_category']?>"><?=$item['name_category']?></a>
+    
+            <?php
+                
+            endforeach;
+            ?>
+            <a class="menu" href="?p=contact">Contact</a>
+            <a class="menu" href="?p=connect">Connexion</a>
+            <?php else : ?>
+                <div class="btn-nav">
+                    <button class="btn"><a href="?deconnect">deconnection</a></button>
+                    <button class="btn"><a href="?p=article_add">ajoutez article</a></button>
+                    <button class="btn"><a href="./" style="text-transform: capitalize;"><?= $_SESSION['login_user']?><i class='fas fa-home'></i></a></button>
+                </div>
+        <?php endif; ?>
 
     </nav>
 
