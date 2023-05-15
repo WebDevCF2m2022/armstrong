@@ -40,13 +40,12 @@ include_once '../view/include/header.php';
     <?php endif; ?>
     </div>
     </div>
-    <!--<div class="conteneurpara">
-    <//?php/* if(!empty($postWiki['url'])):?>
-        <p><a href="cliquez sr ce lien pour plus d'info"></a><//?= $postWiki['wiki_article']?></p> 
-         <//?php var_dump($postWiki) ; 
-?>
-        </*?php endif; */?>
-    </div>-->
+<div class="conteneurpara">
+    <?php
+    if(!empty($article['wiki_article'])):?>
+        <p><a href="<?=$article['wiki_article']?>">Cliquez sur ce lien pour plus d'info</a></p> 
+<?php endif;?>
+        </div>
     </section>
     </main>
 
