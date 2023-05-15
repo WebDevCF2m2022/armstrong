@@ -1,0 +1,27 @@
+.btn-nav {
+    display: flex;
+    flex-direction: row;
+    width: 30vw;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-left: 30%;
+}
+
+.btn-nav a {
+    text-decoration: none;
+    color: white;
+    width: 15%;   
+}
+
+.btn-nav .btn{
+    border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+    .btn-nav{
+        margin-left: -40%;
+        flex-direction: column;
+        width: 50vw;
+    } 
+}
+

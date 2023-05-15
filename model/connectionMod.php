@@ -17,7 +17,7 @@ function connectUser(PDO $theDB, string $login, string $pwd) {
 
     if ($queryConnect->rowCount() === 0) {
 
-        return "on te connait pas";
+        return "Echec de connection ! Recommencez !";
 
     }
 
@@ -70,8 +70,9 @@ function inscriptionUser(PDO $db, string $pseudo, string $mdp, string $email)
     $insertInscrip->bindParam(3, $email, PDO::PARAM_STR);
     try {
         $insertInscrip->execute();
+        return true;
     } catch (Exception $e) {
-
         return $e->getMessage();
     }
+    
 }

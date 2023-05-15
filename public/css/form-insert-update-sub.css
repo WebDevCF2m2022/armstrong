@@ -1,0 +1,52 @@
+.container-add, .container-sub {
+    padding-top: 2rem;
+    width: 70%;
+    margin: auto;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    
+}
+
+.champs input, .container-add textarea, .container-sub input {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+
+.container-add hr {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.champs h2, .container-add h2, .container-sub h2 {
+    padding: 0.5rem 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.checkbox input {
+    margin: 1rem 0;
+}
+
+.checkbox label {
+   font-size: 1.3rem;
+
+}
+
+.checkbox h3 {
+    padding: 0.5rem 0 0 0;
+}
+
+.checkbox {
+    background-color: rgba(230, 230, 230, 0.6);
+}
+
+
+@media (max-width:1000px) {
+
+    .container-add, .container-sub {
+        width: 90%;
+    }
+}
