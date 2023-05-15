@@ -23,7 +23,7 @@ html {
     
   }
   a.menu:hover{
-    font-weight: 1000;
+    /* font-weight: 1000; */
     text-decoration: underline 2px;
   }
   nav{
