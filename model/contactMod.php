@@ -1,14 +1,15 @@
 <?php
+
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
  function sendMessage(PDO $db, string $contactName, string $contactMail, string $contactMessage)
- {
+{
      $contactName = htmlspecialchars($contactName, ENT_QUOTES);
      $contactMail = filter_var($contactMail,FILTER_VALIDATE_EMAIL);// filter_var
      $contactMessage = htmlspecialchars($contactMessage, ENT_QUOTES);
-  
+
      $insertion = $db->prepare('INSERT INTO contact VALUES (NULL, :name_contact, :mail_contact, :message_contact)');
      $insertion->bindValue(':name_contact', $_POST['contactName']);
      $insertion->bindValue(':mail_contact', $_POST['contactMail']);
@@ -19,7 +20,7 @@ use Symfony\Component\Mime\Email;
      } catch (PDOException $e) {
          die ($e->getMessage());
      }
- }
+}
 
 
 

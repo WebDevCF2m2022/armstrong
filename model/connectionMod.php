@@ -17,7 +17,7 @@ function connectUser(PDO $theDB, string $login, string $pwd) {
 
     if ($queryConnect->rowCount() === 0) {
 
-        return "on te connait pas";
+        return "Echec de connection ! Recommencez !";
 
     }
 

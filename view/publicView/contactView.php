@@ -2,7 +2,7 @@
 
 $title = "contact";
 include_once '../view/include/header.php';
-
+var_dump($problem);
   
                     
 ?>
@@ -18,6 +18,9 @@ include_once '../view/include/header.php';
         </div>
         <div class="right">
             <h2 class="contactezns">Contactez-nous</h2>
+            <?php if(isset($problem)): ?>
+                <h2><?= $problem ?></h2>
+            <?php endif; ?> 
 
 
             <input type="text" id="utilisateur"class="field" name="contactName" placeholder= "nom" required>

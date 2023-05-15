@@ -1,5 +1,44 @@
 <?php
 
+//check varaible $POST pour connexion et inscription
+if(isset($_POST['login'],$_POST['pwd'])){
+    $connect = connectUser($db,$_POST['login'],$_POST['pwd']);                       
+    if(is_string($connect)) {
+        $message = $connect;                          
+    }else{
+        header("Location: ./");       
+    }
+}            
+
+elseif(isset($_POST['password']) && $_POST['password'] == $_POST['confirmPassword']) {
+    $inscrit = inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email']);
+    if($inscrit === true){
+        $problem = "Félicitation ! Vous êtes inscrit !         
+        <script>
+        setTimeout(\"location.href = './';\", 2000);
+        </script>";
+    }
+    else{
+        $problem = $inscrit;
+    }
+}
+
+
+elseif(isset($_POST['contactName']) && isset($_POST['contactMail']) && isset($_POST['contactMessage'])) {
+    
+    $mailer = sendMail();  
+    $messageSent = sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage']);
+    
+    if($messageSent === true ) {
+        $problem = "Votre message a bien été envoyé !         
+        <script>
+        setTimeout(\"location.href = './';\", 3000);
+        </script>";;
+    } else {
+        $problem = "Echec de l'envoie !";
+    }
+}                  
+
 // affiche les pages codée en dure
 if(isset($_GET['p'])){
     switch($_GET['p']){
@@ -60,44 +99,4 @@ else{
     
 }
 
-//check varaible $POST pour connexion et inscription
-if(isset($_POST['login'],$_POST['pwd'])){
-    $connect = connectUser($db,$_POST['login'],$_POST['pwd']);                       
-    if(is_string($connect)) {
-        $message = $connect;
-        echo $message;                   
-    }else{
-        header("Location: ./");
-        
-    }
-}            
-
-if(isset($_POST['password']) && $_POST['password'] == $_POST['confirmPassword']) {
-    $inscrit = inscriptionUser($db, $_POST['pseudo'], $_POST['password'], $_POST['email']);
-    if(is_string($inscrit)){
-        $reponse = $inscrit;
-    if($inscrit === true){
-        $reponse = "L'article a bien été modifié          
-            <script>
-            setTimeout(\"location.href = './';\", 2000);
-            </script>";
-        }
-    }
-}
-
-
-if(isset($_POST['contactName']) &&
-isset($_POST['contactMail']) &&
-isset($_POST['contactMessage'])) {
-    
-    $mailer = sendMail();
-    
-    
-    
-    if(sendMessage($db,$_POST['contactName'],$_POST['contactMail'],$_POST['contactMessage'])) {
-        $envoi = "Insertion réussie";
-    } else {
-        echo "Echec de l'insertion";
-    }
-}                  
 
