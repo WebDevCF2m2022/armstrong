@@ -18,7 +18,7 @@ include_once '../view/include/header.php';
     </div>
   </div>
   <h2 class="titre1">MOST RECENT ARTICLES</h2>
-  <hr class="ligne1">
+
   <br>
 
 <div class="gridCard" >
