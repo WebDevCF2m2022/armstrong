@@ -9,19 +9,24 @@ include_once '../view/include/header.php';
 
 
 <!-- affichage titre la catégory et la descritpion -->
-    <h2><?= $categoryById['name_category'];?></h2>
-    <p><?= $categoryById['description_category'];?></p>
+    <h2 class="gategName"><?= $categoryById['name_category'];?></h2>
+    <p class="gategDesc"><?= $categoryById['description_category'];?></p>
 
 
 <!-- affichage des articles de la catégory -->
-
+<div class="gridCard">
 <?php foreach($articlesByCategory as $item) : ?>
-    <h2><?= $item['name_article']?></h2>
+    <div class='card1'>
     <a href="?articleId=<?=$item['id_article']?>"><img src="<?=$item['url']?>" alt="<?= $item['name_article']?>" width="300px"></a>
-    <p><?=$item['sound_article']?></p>
-    <p><?=$item['min_description_article']?></p>
-
+    <h2 class="positionCard"><?= $item['name_article']?></h2>
+    <img src="asset/img/bouton-jouer.png" class="ctrlIcon" />
+    <p class="positionCard"><?=$item['min_description_article']?></p>
+    <div>
+    <audio controls src="<?= $item['sound_article'] ?>"></audio>
+  </div>
+</div>
 <?php endforeach; ?>
+</div>
 
 
 
