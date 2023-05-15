@@ -1,11 +1,10 @@
 <?php
 
 $title = "ajout d'article";
-include_once '../view/include/headerCrud.php';
+include_once '../view/include/header.php';
 // var_dump($_POST, $problem);
 ?>
-<button><a href="?deconnect">deconnection</a></button>
-<button > <a href="?deconnect"> Accueil<i class='fas fa-home'></i></a></button>
+
 
 <div class="container-add">
     <div class="champs">
